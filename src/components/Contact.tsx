@@ -83,13 +83,13 @@ export function Contact() {
     {
       name: 'GitHub',
       icon: Github,
-      url: 'https://github.com',
+      url: 'https://github.com/Komal290106',
       bgColor: isDark ? 'bg-emerald-500' : 'bg-emerald-400',
     },
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      url: 'https://linkedin.com',
+      url: 'https://www.linkedin.com/in/komal-kaur-dhillon-59149a330/',
       bgColor: isDark ? 'bg-pink-500' : 'bg-pink-400',
     },
   ];
