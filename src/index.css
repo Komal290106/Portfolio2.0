@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .pixel-font {
+    font-family: 'Press Start 2P', cursive;
+    image-rendering: pixelated;
+  }
+
+  .retro-font {
+    font-family: 'VT323', monospace;
+  }
+
+  .grid-bg-light {
+    background-image:
+      linear-gradient(rgba(255, 159, 28, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 159, 28, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .grid-bg-dark {
+    background-image:
+      linear-gradient(rgba(167, 139, 250, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(167, 139, 250, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .pixel-border {
+    box-shadow:
+      0 0 0 2px currentColor,
+      0 0 0 4px transparent,
+      0 0 0 6px currentColor;
+  }
+
+  .glow-light {
+    box-shadow: 0 0 20px rgba(255, 159, 28, 0.5);
+  }
+
+  .glow-dark {
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.5);
+  }
+
+  .text-glow-light {
+    text-shadow: 0 0 10px rgba(255, 159, 28, 0.8);
+  }
+
+  .text-glow-dark {
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.8);
+  }
+}
