@@ -59,25 +59,25 @@ export function Contact() {
   };
 
   const contactInfo = [
-    {
-      name: 'Sevallwall',
-      value: 'will continue to begin all, i.e.',
-      icon: Mail,
-      bgColor: isDark ? 'bg-emerald-500' : 'bg-emerald-400',
-    },
-    {
-      name: 'Blessing',
-      value: 'Available Tuesday',
-      icon: MapPin,
-      bgColor: isDark ? 'bg-pink-500' : 'bg-pink-400',
-    },
-    {
-      name: 'Response Time',
-      value: 'without or more',
-      icon: Clock,
-      bgColor: isDark ? 'bg-amber-500' : 'bg-amber-400',
-    },
-  ];
+  {
+    name: 'Guild Scroll',
+    value: 'dhillonkoma@gmail.com',
+    icon: Mail,
+    bgColor: isDark ? 'bg-emerald-500' : 'bg-emerald-400',
+  },
+  {
+    name: 'Current Quest Status',
+    value: 'Accepting new side quests (Tuesdays preferred)',
+    icon: MapPin,
+    bgColor: isDark ? 'bg-pink-500' : 'bg-pink-400',
+  },
+  {
+    name: 'Response Time',
+    value: 'Within one moon cycle (usually quicker)',
+    icon: Clock,
+    bgColor: isDark ? 'bg-amber-500' : 'bg-amber-400',
+  },
+];
 
   const socialLinks = [
     {
