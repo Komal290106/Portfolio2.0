@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
-import { Mail, Linkedin, Github, Send, Phone, MapPin, Clock } from 'lucide-react';
+import { Mail, Linkedin, Github, Send, MapPin, Clock } from 'lucide-react';
 import { useState } from 'react';
 
 export function Contact() {
@@ -59,25 +59,25 @@ export function Contact() {
   };
 
   const contactInfo = [
-  {
-    name: 'Guild Scroll',
-    value: 'dhillonkoma@gmail.com',
-    icon: Mail,
-    bgColor: isDark ? 'bg-emerald-500' : 'bg-emerald-400',
-  },
-  {
-    name: 'Current Quest Status',
-    value: 'Accepting new side quests (Tuesdays preferred)',
-    icon: MapPin,
-    bgColor: isDark ? 'bg-pink-500' : 'bg-pink-400',
-  },
-  {
-    name: 'Response Time',
-    value: 'Within one moon cycle (usually quicker)',
-    icon: Clock,
-    bgColor: isDark ? 'bg-amber-500' : 'bg-amber-400',
-  },
-];
+    {
+      name: 'Guild Scroll',
+      value: 'dhillonkoma@gmail.com',
+      icon: Mail,
+      bgColor: isDark ? 'bg-emerald-500' : 'bg-emerald-400',
+    },
+    {
+      name: 'Current Quest Status',
+      value: 'Open to New Collaborations (Side & Main Quests)',
+      icon: MapPin,
+      bgColor: isDark ? 'bg-pink-500' : 'bg-pink-400',
+    },
+    {
+      name: 'Response Time',
+      value: 'Standard Quest-Time: 1-2 Business Cycles (Days)',
+      icon: Clock,
+      bgColor: isDark ? 'bg-amber-500' : 'bg-amber-400',
+    },
+  ];
 
   const socialLinks = [
     {
@@ -113,27 +113,31 @@ export function Contact() {
         }}
       />
 
-      <div className="max-w-4xl w-full relative z-10">
+      <div className="max-w-6xl w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2
-            className={`font-mono text-3xl md:text-4xl lg:text-5xl mb-4 font-bold tracking-wider ${
-              isDark ? 'text-fuchsia-400' : 'text-purple-700'
-            }`}
-            style={{
-              textShadow: isDark 
-                ? '4px 4px 0px #e879f9, 8px 8px 20px rgba(232, 121, 249, 0.5)' 
-                : '4px 4px 0px #FF9800, 8px 8px 20px rgba(255, 152, 0, 0.4)',
-            }}
-          >
-            ⚔️ START A NEW QUEST
-          </h2>
+  className={`font-mono text-4xl md:text-5xl lg:text-6xl mb-6 font-bold tracking-wider ${
+    isDark ? 'text-fuchsia-400' : 'text-purple-700'
+  }`}
+  style={{
+    // Apply shadows only for md+ screens
+    textShadow: window.innerWidth >= 768
+      ? isDark
+        ? '2px 2px 0px #FFFFFF' // White shadow in dark mode
+        : '2px 2px 0px rgba(255,152,0,0.8)' // Orange shadow in light mode
+      : 'none', // No shadow on mobile
+  }}
+>
+  ⚔️ START A NEW QUEST
+</h2>
+
           <p
-            className={`font-mono text-base md:text-lg max-w-2xl mx-auto ${
+            className={`font-mono text-lg md:text-xl max-w-2xl mx-auto ${
               isDark ? 'text-violet-200' : 'text-green-600'
             }`}
           >
@@ -141,17 +145,17 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Contact Information */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Contact Information - Moved left with larger text */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-4"
+            className="space-y-6 lg:ml-8"
           >
             <div className="mb-8">
               <h3
-                className={`font-mono text-xl font-bold mb-6 tracking-wider ${
+                className={`font-mono text-2xl lg:text-3xl font-bold mb-8 tracking-wider ${
                   isDark ? 'text-fuchsia-400' : 'text-orange-600'
                 }`}
               >
@@ -168,23 +172,23 @@ export function Contact() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-start gap-3"
+                  className="flex items-start gap-4"
                 >
                   <div
-                    className={`${info.bgColor} p-2 rounded-lg flex-shrink-0 flex items-center justify-center`}
+                    className={`${info.bgColor} p-3 rounded-lg flex-shrink-0 flex items-center justify-center`}
                   >
-                    <Icon className="w-5 h-5 text-white" />
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <p
-                      className={`font-mono font-bold text-sm ${
+                      className={`font-mono font-bold text-base lg:text-lg ${
                         isDark ? 'text-fuchsia-300' : 'text-purple-700'
                       }`}
                     >
                       {info.name}
                     </p>
                     <p
-                      className={`font-mono text-xs mt-1 ${
+                      className={`font-mono text-sm lg:text-base mt-2 ${
                         isDark ? 'text-violet-200' : 'text-gray-700'
                       }`}
                     >
@@ -201,19 +205,19 @@ export function Contact() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="pt-6 border-t-2 border-dashed"
+              className="pt-8 border-t-2 border-dashed"
               style={{
                 borderColor: isDark ? 'rgba(232, 121, 249, 0.3)' : 'rgba(255, 152, 0, 0.3)',
               }}
             >
               <p
-                className={`font-mono font-bold text-sm mb-3 ${
+                className={`font-mono font-bold text-base lg:text-lg mb-4 ${
                   isDark ? 'text-fuchsia-300' : 'text-orange-600'
                 }`}
               >
                 JOIN AT PARTY
               </p>
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 {socialLinks.map((link) => {
                   const Icon = link.icon;
                   return (
@@ -224,12 +228,9 @@ export function Contact() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -4 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`${link.bgColor} p-2 rounded-lg flex items-center justify-center transition-all`}
-                      style={{
-                        boxShadow: `0 0 15px ${link.bgColor.includes('emerald') ? 'rgba(16, 185, 129, 0.5)' : 'rgba(244, 63, 94, 0.5)'}`,
-                      }}
+                      className={`${link.bgColor} p-3 rounded-lg flex items-center justify-center transition-all`}
                     >
-                      <Icon className="w-5 h-5 text-white" />
+                      <Icon className="w-6 h-6 text-white" />
                     </motion.a>
                   );
                 })}
@@ -237,65 +238,50 @@ export function Contact() {
             </motion.div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Contact Form - Larger for laptops */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className={`lg:col-span-2 p-6 rounded-lg border-4 ${
+            className={`lg:col-span-2 p-8 rounded-lg border-4 relative ${
               isDark
                 ? 'bg-slate-800 border-fuchsia-400'
                 : 'bg-white border-orange-400'
+            } sm:[box-shadow:6px_6px_0px_rgba(232,121,249,0.2)] ${
+              !isDark && 'sm:[box-shadow:6px_6px_0px_rgba(255,152,0,0.1)]'
             }`}
-            style={{
-              boxShadow: isDark 
-                ? '6px 6px 0px rgba(232, 121, 249, 0.2)' 
-                : '6px 6px 0px rgba(255, 152, 0, 0.1)',
-            }}
           >
-            {submitted ? (
+            {/* Success Banner */}
+            {submitted && (
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="text-center py-8"
+                initial={{ opacity: 0, y: -50, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -50, scale: 0.8 }}
+                transition={{ duration: 0.5 }}
+                className={`mb-8 p-6 rounded-lg border-2 text-center ${
+                  isDark
+                    ? 'bg-green-900 border-green-400 text-green-200'
+                    : 'bg-green-100 border-green-500 text-green-800'
+                }`}
+                style={{
+                  boxShadow: '0 4px 15px rgba(34, 197, 94, 0.3)',
+                }}
               >
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
-                  className="inline-block mb-3"
-                >
-                  <Send
-                    className={`w-12 h-12 ${
-                      isDark ? 'text-fuchsia-400' : 'text-orange-500'
-                    }`}
-                  />
-                </motion.div>
-                <h3
-                  className={`font-mono text-xl font-bold mb-2 tracking-wider ${
-                    isDark ? 'text-fuchsia-300' : 'text-orange-600'
-                  }`}
-                  style={{
-                    textShadow: isDark 
-                      ? '2px 2px 0px rgba(232, 121, 249, 0.5)' 
-                      : '2px 2px 0px rgba(255, 152, 0, 0.3)',
-                  }}
-                >
-                  QUEST ACCEPTED!
+                <h3 className="font-mono text-xl font-bold tracking-wider mb-2">
+                  TRANSMISSION SUCCESSFUL!
                 </h3>
-                <p
-                  className={`font-mono text-sm ${
-                    isDark ? 'text-violet-200' : 'text-gray-700'
-                  }`}
-                >
-                  Your message has been sent. I'll respond soon!
+                <p className="font-mono text-base">
+                  Guild Master Komal is reviewing your quest details.
                 </p>
               </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+            )}
+
+            {!submitted && (
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
-                    className={`block font-mono font-bold text-sm mb-2 ${
+                    className={`block font-mono font-bold text-base lg:text-lg mb-3 ${
                       isDark ? 'text-fuchsia-300' : 'text-purple-700'
                     }`}
                   >
@@ -309,21 +295,18 @@ export function Contact() {
                     onChange={handleChange}
                     placeholder="State your name, brave traveler..."
                     required
-                    className={`w-full px-3 py-2 rounded-none border-2 font-mono transition-all ${
+                    className={`w-full px-4 py-3 rounded-none border-2 font-mono text-base transition-all ${
                       isDark
-                        ? 'bg-slate-900 border-fuchsia-400 text-violet-200 focus:border-fuchsia-300 focus:shadow-lg'
-                        : 'bg-orange-50 border-orange-400 text-gray-800 focus:border-orange-500 focus:shadow-lg'
+                        ? 'bg-slate-900 border-fuchsia-400 text-violet-200 focus:border-fuchsia-300'
+                        : 'bg-orange-50 border-orange-400 text-gray-800 focus:border-orange-500'
                     } focus:outline-none`}
-                    style={{
-                      boxShadow: 'inset 0 0 0 0 transparent',
-                    }}
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="email"
-                    className={`block font-mono font-bold text-sm mb-2 ${
+                    className={`block font-mono font-bold text-base lg:text-lg mb-3 ${
                       isDark ? 'text-fuchsia-300' : 'text-purple-700'
                     }`}
                   >
@@ -335,12 +318,12 @@ export function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Where shall I send my reply?"
+                    placeholder="Your Raven-Mail Address..."
                     required
-                    className={`w-full px-3 py-2 rounded-none border-2 font-mono transition-all ${
+                    className={`w-full px-4 py-3 rounded-none border-2 font-mono text-base transition-all ${
                       isDark
-                        ? 'bg-slate-900 border-fuchsia-400 text-violet-200 focus:border-fuchsia-300 focus:shadow-lg'
-                        : 'bg-orange-50 border-orange-400 text-gray-800 focus:border-orange-500 focus:shadow-lg'
+                        ? 'bg-slate-900 border-fuchsia-400 text-violet-200 focus:border-fuchsia-300'
+                        : 'bg-orange-50 border-orange-400 text-gray-800 focus:border-orange-500'
                     } focus:outline-none`}
                   />
                 </div>
@@ -348,7 +331,7 @@ export function Contact() {
                 <div>
                   <label
                     htmlFor="message"
-                    className={`block font-mono font-bold text-sm mb-2 ${
+                    className={`block font-mono font-bold text-base lg:text-lg mb-3 ${
                       isDark ? 'text-fuchsia-300' : 'text-purple-700'
                     }`}
                   >
@@ -359,13 +342,13 @@ export function Contact() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Describe your quest or project..."
+                    placeholder="Describe your Quest / Mission Details..."
                     required
-                    rows={4}
-                    className={`w-full px-3 py-2 rounded-none border-2 font-mono transition-all resize-none ${
+                    rows={5}
+                    className={`w-full px-4 py-3 rounded-none border-2 font-mono text-base transition-all resize-none ${
                       isDark
-                        ? 'bg-slate-900 border-fuchsia-400 text-violet-200 focus:border-fuchsia-300 focus:shadow-lg'
-                        : 'bg-orange-50 border-orange-400 text-gray-800 focus:border-orange-500 focus:shadow-lg'
+                        ? 'bg-slate-900 border-fuchsia-400 text-violet-200 focus:border-fuchsia-300'
+                        : 'bg-orange-50 border-orange-400 text-gray-800 focus:border-orange-500'
                     } focus:outline-none`}
                   />
                 </div>
@@ -375,20 +358,15 @@ export function Contact() {
                   whileTap={{ scale: isLoading ? 1 : 0.98 }}
                   type="submit"
                   disabled={isLoading}
-                  className={`w-full py-3 rounded-none font-mono font-bold text-base flex items-center justify-center gap-2 transition-all border-3 uppercase tracking-wider ${
+                  className={`w-full py-4 rounded-none font-mono font-bold text-lg flex items-center justify-center gap-3 transition-all border-3 uppercase tracking-wider ${
                     isLoading
                       ? 'bg-gray-400 text-white border-gray-600 cursor-not-allowed'
                       : isDark
                       ? 'bg-fuchsia-500 text-white border-fuchsia-700 hover:bg-fuchsia-400'
                       : 'bg-green-600 text-white border-green-800 hover:bg-green-500'
+                  } sm:[box-shadow:3px_3px_0px_rgba(232,121,249,0.3)] ${
+                    !isDark && !isLoading && 'sm:[box-shadow:3px_3px_0px_rgba(16,185,129,0.3)]'
                   }`}
-                  style={{
-                    boxShadow: isLoading 
-                      ? 'none'
-                      : isDark 
-                      ? '3px 3px 0px rgba(232, 121, 249, 0.3)' 
-                      : '3px 3px 0px rgba(16, 185, 129, 0.3)',
-                  }}
                 >
                   {isLoading ? (
                     <>
@@ -396,13 +374,13 @@ export function Contact() {
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       >
-                        <Send className="w-4 h-4" />
+                        <Send className="w-5 h-5" />
                       </motion.div>
                       SENDING...
                     </>
                   ) : (
                     <>
-                      <Send className="w-4 h-4" />
+                      <Send className="w-5 h-5" />
                       SEND QUEST SCROLL
                     </>
                   )}

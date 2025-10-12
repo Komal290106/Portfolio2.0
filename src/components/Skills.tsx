@@ -110,21 +110,21 @@ export function Skills() {
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Heading */}
         <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ type: 'spring', stiffness: 100 }}
-          className={`font-mono text-4xl md:text-5xl text-center mb-2 font-bold tracking-wider ${
-            isDark ? 'text-fuchsia-400' : 'text-purple-700'
-          }`}
-          style={{
-            textShadow: isDark 
-              ? '2px 2px 0px #e879f9, 4px 4px 15px rgba(232, 121, 249, 0.4)' 
-              : '2px 2px 0px #ec4899, 4px 4px 15px rgba(236, 72, 153, 0.3)',
-          }}
-        >
-          🌳 SKILL ORCHARD 🌳
-        </motion.h2>
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ type: 'spring', stiffness: 100 }}
+  className={`font-mono text-4xl md:text-5xl text-center mb-2 font-bold tracking-wider ${
+    isDark ? 'text-fuchsia-400' : 'text-purple-700'
+  } ${
+    isDark
+      ? 'sm:[text-shadow:2px_2px_0px_rgba(255,255,255,0.9),4px_4px_15px_rgba(232,121,249,0.3)]' // White shadow
+      : 'sm:[text-shadow:2px_2px_0px_rgba(255,152,0,0.8),4px_4px_15px_rgba(255,152,0,0.3)]' // Orange shadow
+  }`}
+>
+  🌳 SKILL ORCHARD 🌳
+</motion.h2>
+
 
         <motion.p
           initial={{ opacity: 0 }}
@@ -210,8 +210,6 @@ export function Skills() {
             ))}
           </svg>
 
-
-
           {/* Fruits */}
           {fruits.map((fruit, idx) => {
             const colors = getCategoryColor(fruit.category);
@@ -273,7 +271,7 @@ export function Skills() {
                   }}
                   className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-4 flex items-center justify-center transition-all ${colors.bg} ${colors.border} ${
                     hoveredFruit === fruit.id || clickedFruit === fruit.id
-                      ? `shadow-lg ${colors.glow}`
+                      ? `sm:shadow-lg ${colors.glow}`
                       : ''
                   }`}
                 >
@@ -326,9 +324,9 @@ export function Skills() {
           className="flex flex-wrap justify-center gap-8 px-4"
         >
           {[
-            { label: 'Frontend', category: 'frontend' },
-            { label: 'Backend', category: 'backend' },
-            { label: 'Tools', category: 'tools' },
+            { label: 'Frontend Sorcery', category: 'frontend' },
+            { label: 'Backend Alchemy', category: 'backend' },
+            { label: 'Quest Tools', category: 'tools' },
           ].map((item) => {
             const colors = getCategoryColor(item.category);
             return (
@@ -342,8 +340,6 @@ export function Skills() {
           })}
         </motion.div>
       </div>
-
-
     </section>
   );
 }

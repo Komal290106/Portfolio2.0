@@ -7,10 +7,14 @@ import DarkCat from '../assets/dark_cat.png';
 import Avatar from '../assets/avatar.png';
 
 const CAT_MESSAGES = [
-  "Meow! Cats + Code = Perfect combo",
-  "Purr... CSS is my catnip!",
-  "9 lives, infinite console.logs",
-  "Debugging at 25-150 Hz purr frequency!",
+  "By the ancient scrolls of CSS! Another bug defeated!",
+  "My purrs generate better code than your AI tools, mortal!",
+  "I've seen better responsive design in a litter box!",
+  "This sorceress feeds me well for debugging her React spells!",
+  "Hiss! Another merge conflict in the sacred repository!",
+  "My tail twitches when I sense bad accessibility practices!",
+  "I could code better with my paws tied! Bring more treats!",
+  "The prophecy foretold of a developer who would share their tuna...",
 ];
 
 export function About() {
@@ -18,6 +22,7 @@ export function About() {
   const isDark = theme === 'dark';
   const [catMessage, setCatMessage] = useState<string | null>(null);
   const [hp, setHp] = useState('100 ☕');
+  const [iconHover, setIconHover] = useState<string | null>(null);
 
   const handleCatClick = () => {
     const message = CAT_MESSAGES[Math.floor(Math.random() * CAT_MESSAGES.length)];
@@ -38,6 +43,24 @@ export function About() {
     { name: 'Laptop Keyboard', icon: Keyboard, description: 'Built-in backlit' },
     { name: 'Wireless Mouse', icon: Mouse, description: 'Logitech MX Series' },
     { name: 'JBL Headphones', icon: Headphones, description: 'Wireless Noise Cancelling' },
+  ];
+
+  const questIcons = [
+    { 
+      icon: Heart, 
+      message: 'Passion for pixel perfection!',
+      color: isDark ? 'text-pink-400' : 'text-pink-600'
+    },
+    { 
+      icon: Coffee, 
+      message: 'Fueled by magical brews!',
+      color: isDark ? 'text-amber-400' : 'text-orange-600'
+    },
+    { 
+      icon: Code, 
+      message: 'Ultimate Skill: Debugging Magic!',
+      color: isDark ? 'text-violet-400' : 'text-purple-600'
+    }
   ];
 
   return (
@@ -108,9 +131,11 @@ export function About() {
           }`}
           style={{
             textShadow: isDark 
-              ? '3px 3px 0px #e879f9' 
+              ? '3px 3px 0px rgba(255, 255, 255, 0.8)' 
               : '3px 3px 0px #FF9800',
           }}
+          // Remove shadow on mobile
+          suppressHydrationWarning
         >
           CHARACTER PROFILE
         </motion.h2>
@@ -126,7 +151,14 @@ export function About() {
             {/* Character Container */}
             <div className="relative">
               <motion.div
-                animate={{ y: [0, -8, 0] }}
+                animate={{ 
+                  y: [0, -8, 0],
+                  boxShadow: [
+                    '8px 8px 0px rgba(232, 121, 249, 0.5)',
+                    '8px 8px 20px rgba(232, 121, 249, 0.8)',
+                    '8px 8px 0px rgba(232, 121, 249, 0.5)'
+                  ]
+                }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                 className={`w-full aspect-square max-w-sm mx-auto rounded-none border-4 ${
                   'bg-white border-fuchsia-500'
@@ -178,24 +210,31 @@ export function About() {
                 />
               </motion.button>
 
-              {/* Cat Message */}
-              {catMessage && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8, x: -20 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0 }}
-                  className={`absolute top-1/2 -right-4 transform translate-x-full max-w-xs p-3 rounded-none border-3 ${
-                    isDark ? 'bg-slate-800 border-amber-400 text-amber-200' : 'bg-white border-orange-400 text-gray-800'
-                  } font-mono text-xs z-20`}
-                  style={{
-                    boxShadow: isDark 
-                      ? '4px 4px 0px rgba(251, 191, 36, 0.4)' 
-                      : '4px 4px 0px rgba(255, 152, 0, 0.3)',
-                  }}
-                >
-                  {catMessage}
-                </motion.div>
-              )}
+{/* Cat Message - Positioned right above the cat */}
+{catMessage && (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8, y: 10 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    exit={{ opacity: 0 }}
+    className={`absolute -top-4 left-20 transform max-w-xs p-3 rounded-none border-3 ${
+      isDark ? 'bg-slate-800 border-amber-400 text-amber-200' : 'bg-white border-orange-400 text-gray-800'
+    } font-mono text-xs z-20`}
+    style={{
+      boxShadow: isDark 
+        ? '4px 4px 0px rgba(251, 191, 36, 0.4)' 
+        : '4px 4px 0px rgba(255, 152, 0, 0.3)',
+    }}
+  >
+    <div className="flex items-start gap-2">
+      <span className="text-lg">🐾</span>
+      <span>{catMessage}</span>
+    </div>
+    {/* Speech bubble tip */}
+    <div className={`absolute -left-2 top-5 w-3 h-3 rotate-45 ${
+      isDark ? 'bg-slate-800 border-l-3 border-b-3 border-amber-400' : 'bg-white border-l-3 border-b-3 border-orange-400'
+    }`} />
+  </motion.div>
+)}
             </div>
 
             {/* Personality Traits - Below Character */}
@@ -275,10 +314,33 @@ export function About() {
                Always seeking the next quest to level up creativity, pixels, and a touch of magic.
               </p>
 
-              <div className="flex gap-3">
-                <Heart className={`w-5 h-5 ${isDark ? 'text-pink-400' : 'text-pink-600'}`} />
-                <Coffee className={`w-5 h-5 ${isDark ? 'text-amber-400' : 'text-orange-600'}`} />
-                <Code className={`w-5 h-5 ${isDark ? 'text-violet-400' : 'text-purple-600'}`} />
+              {/* Interactive Quest Log Icons - Aligned to left */}
+              <div className="flex gap-4">
+                {questIcons.map((item, index) => {
+                  const IconComponent = item.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.3 }}
+                      className="relative cursor-pointer group"
+                      onMouseEnter={() => setIconHover(item.message)}
+                      onMouseLeave={() => setIconHover(null)}
+                    >
+                      <IconComponent className={`w-6 h-6 ${item.color}`} />
+                      {iconHover === item.message && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className={`absolute -top-8 left-1/2 transform -translate-x-1/2 font-mono text-xs px-2 py-1 rounded-none border-2 whitespace-nowrap ${
+                            isDark ? 'bg-slate-800 border-fuchsia-400 text-fuchsia-200' : 'bg-white border-orange-500 text-orange-700'
+                          }`}
+                        >
+                          {item.message}
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
 

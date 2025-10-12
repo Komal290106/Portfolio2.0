@@ -80,7 +80,7 @@ export function Header() {
         </motion.button>
 
         <nav className="hidden md:flex gap-8 font-mono font-medium">
-          {['About', 'Skills', 'Quests', 'Contact'].map((item) => (
+          {['Character Profile', 'Skill Orchard', 'Quest Log', 'Contact Guild'].map((item) => (
             <motion.a
               key={item}
               href={`#${item.toLowerCase()}`}

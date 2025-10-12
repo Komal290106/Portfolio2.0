@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Download, Gamepad2, Sparkles } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
+import ResumeFile from "../assets/Komal_resume.pdf";
 
 export function Hero() {
   const { theme } = useTheme();
@@ -76,18 +77,19 @@ export function Hero() {
           }}
           className={`font-mono text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 tracking-wider font-bold ${
             isDark ? 'text-fuchsia-400' : 'text-purple-700'
+          } ${
+            isDark 
+              ? 'sm:[text-shadow:4px_4px_0px_rgba(255,255,255,0.8),8px_8px_20px_rgba(232,121,249,0.5)]' 
+              : 'sm:[text-shadow:4px_4px_0px_rgba(255,152,0,0.8),8px_8px_20px_rgba(255,152,0,0.4)]'
           }`}
           style={{
-            textShadow: isDark 
-              ? '4px 4px 0px #e879f9, 8px 8px 20px rgba(232, 121, 249, 0.5)' 
-              : '4px 4px 0px #FF9800, 8px 8px 20px rgba(255, 152, 0, 0.4)',
             letterSpacing: '0.05em'
           }}
         >
           HI, I'M KOMAL
         </motion.h1>
 
-        {/* Subtitle with Typewriter Effect */}
+        {/* Subtitle */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -111,7 +113,7 @@ export function Hero() {
             isDark ? 'text-violet-300' : 'text-purple-600'
           }`}
         >
-          Crafting interactive <span className="text-orange-600 dark:text-amber-400 font-semibold">experiences</span>, one quest at a time.
+          Weaving digital spells and crafting <span className="text-orange-600 dark:text-amber-400 font-semibold">interactive realms</span>, one quest at a time.
         </motion.p>
 
         {/* Action Buttons */}
@@ -144,7 +146,8 @@ export function Hero() {
           </motion.a>
 
           <motion.a
-            href="/resume.pdf"
+            href={ResumeFile}
+            download="Komal_Kaur_Resume.pdf"
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 1.6, type: "spring" }}
@@ -162,11 +165,11 @@ export function Hero() {
             } flex items-center gap-3 transition-all uppercase tracking-wider`}
           >
             <Download className="w-6 h-6" />
-            Resume
+            Hire This Sorceress
           </motion.a>
         </motion.div>
 
-        {/* Konami Code Hint - Positioned above scroll indicator */}
+        {/* Konami Code Hint */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -196,7 +199,7 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll Indicator - Moved down */}
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

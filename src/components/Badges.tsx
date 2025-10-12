@@ -161,20 +161,24 @@ export function Badges() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className={`font-mono text-3xl md:text-5xl text-center mb-2 font-bold tracking-wider ${
-            isDark ? 'text-fuchsia-400' : 'text-orange-600'
-          }`}
-          style={{
-            textShadow: isDark 
-              ? '2px 2px 0px #e879f9' 
-              : '2px 2px 0px #FF9800',
-          }}
-        >
-          ★ BADGE COLLECTION ★
-        </motion.h2>
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  className={`font-mono text-3xl md:text-5xl text-center mb-2 font-bold tracking-wider ${
+    isDark ? 'text-fuchsia-400' : 'text-purple-700'
+  }`}
+  style={{
+    // Only apply shadow on md+ screens
+    textShadow: window.innerWidth >= 768
+      ? isDark
+        ? '2px 2px 0px #FFFFFF' // white shadow in dark mode
+        : '2px 2px 0px #FF9800' // orange shadow in light mode
+      : 'none', // no shadow on small screens
+  }}
+>
+  ★ BADGE COLLECTION ★
+</motion.h2>
+
 
         <motion.p
           initial={{ opacity: 0 }}
