@@ -9,6 +9,7 @@ import { Contact } from './components/Contact';
 import { KonamiMode } from './components/KonamiMode';
 import { Footer } from './components/Footer';
 import { Loader } from './components/loader';
+// import FloatingPumpkin from './components/FloatingPumpkin'; // ✅ floating pumpkin portal
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -19,11 +20,8 @@ function AppContent() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Fallback: hide loader after 6 seconds if something goes wrong
-    const fallbackTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 6000);
-
+    // Fallback: hide loader after 6 seconds
+    const fallbackTimer = setTimeout(() => setIsLoading(false), 6000);
     return () => clearTimeout(fallbackTimer);
   }, []);
 
@@ -42,6 +40,10 @@ function AppContent() {
             >
               <Header />
               <Hero />
+
+              {/* 🎃 Floating Halloween Pumpkin Portal */}
+              {/* <FloatingPumpkin /> */}
+
               <About />
               <Badges />
               <Skills />
