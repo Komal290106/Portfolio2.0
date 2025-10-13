@@ -12,6 +12,7 @@ import { Loader } from './components/loader';
 // import FloatingPumpkin from './components/FloatingPumpkin'; // ✅ floating pumpkin portal
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import FloatingDiya from './components/FloatingDiya';
 
 function AppContent() {
   const { theme } = useTheme();
@@ -40,6 +41,9 @@ function AppContent() {
             >
               <Header />
               <Hero />
+
+              {/* Floating Diya */}
+      <FloatingDiya />
 
               {/* 🎃 Floating Halloween Pumpkin Portal */}
               {/* <FloatingPumpkin /> */}
