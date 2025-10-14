@@ -53,7 +53,7 @@ export function Badges() {
       description: 'Conquered the hackathon mountain',
       category: 'official',
       issuer: 'United Latino Students Association',
-      date: 'Aug 2024',
+      date: 'Sep 2024',
       skills: ['Teamwork', 'Problem Solving'],
       certImage: Hackthemountain
     },
@@ -64,7 +64,7 @@ export function Badges() {
       description: 'Survived the battles of CSS centering and beyond',
       category: 'official',
       issuer: 'HackerRank',
-      date: '2024',
+      date: 'Sep 2025',
       skills: ['CSS', 'Styling'],
       certImage: CSS
     },
@@ -75,7 +75,7 @@ export function Badges() {
       description: 'Mastered version control and collaboration',
       category: 'official',
       issuer: 'Open Source Chandigarh',
-      date: '2024',
+      date: 'Oct 2024',
       skills: ['Git', 'GitHub', 'Collaboration'],
       certImage: Git
     },
@@ -86,7 +86,7 @@ export function Badges() {
       description: 'Participated and excelled in web development hackathon challenges',
       category: 'official',
       issuer: 'TuteDude',
-      date: '2024',
+      date: 'July 2025',
       skills: ['Web Development', 'Hackathon', 'Problem Solving'],
       certImage: Tutedude
     },
@@ -97,7 +97,7 @@ export function Badges() {
       description: 'Expert in modern JavaScript ES6+ magic',
       category: 'official',
       issuer: 'HackerRank',
-      date: '2024',
+      date: 'Oct 2025',
       skills: ['JavaScript'],
       certImage: JavaScript
     },
