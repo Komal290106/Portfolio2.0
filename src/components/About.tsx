@@ -309,7 +309,7 @@ export function About() {
                 QUEST LOG:
               </h3>
               <p className={`font-mono text-sm ${isDark ? 'text-violet-100' : 'text-gray-700'} leading-relaxed mb-3`}>
-               Hi! I'm Komal — I mix code, design, and chaos to build web experiences that feel alive. 
+               Hi! I'm Komal - I mix code, design, and chaos to build web experiences that feel alive. 
                Currently grinding XP in React & Framer Motion while avoiding CSS dragons. 
                Always seeking the next quest to level up creativity, pixels, and a touch of magic.
               </p>
