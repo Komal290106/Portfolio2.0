@@ -11,9 +11,7 @@ export function Header() {
   const isDark = theme === 'dark';
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -32,11 +30,12 @@ export function Header() {
     }
   };
 
+  // ✅ Simplified recruiter-friendly links
   const quickLinks = [
-    { name: 'Character Profile', href: '#about' },
-    { name: 'Skill Orchard', href: '#skills' },
-    { name: 'Quest Log', href: '#quests' },
-    { name: 'Contact Guild', href: '#contact' },
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#quests' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (

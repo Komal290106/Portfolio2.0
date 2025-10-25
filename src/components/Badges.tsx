@@ -33,108 +33,107 @@ export function Badges() {
   const [filter, setFilter] = useState<BadgeCategory>('all');
   const [selectedBadge, setSelectedBadge] = useState<Badge | null>(null);
   const [hoveredBadge, setHoveredBadge] = useState<string | null>(null);
-
-  const badges: Badge[] = [
-    {
-      id: '1',
-      name: 'Responsive Web Design',
-      icon: <Star className="w-8 h-8" />,
-      description: 'Master of creating adaptive and responsive web experiences',
-      category: 'official',
-      issuer: 'freeCodeCamp',
-      date: 'Mar 2025',
-      skills: ['HTML', 'CSS', 'Responsive Design'],
-      certImage: Freecodecamp
-    },
-    {
-      id: '2',
-      name: 'Hack The Mountain 5.0',
-      icon: <Trophy className="w-8 h-8" />,
-      description: 'Conquered the hackathon mountain',
-      category: 'official',
-      issuer: 'United Latino Students Association',
-      date: 'Aug 2024',
-      skills: ['Teamwork', 'Problem Solving'],
-      certImage: Hackthemountain
-    },
-    {
-      id: '3',
-      name: 'CSS(Basic)',
-      icon: <Shield className="w-8 h-8" />,
-      description: 'Survived the battles of CSS centering and beyond',
-      category: 'official',
-      issuer: 'HackerRank',
-      date: '2024',
-      skills: ['CSS', 'Styling'],
-      certImage: CSS
-    },
-    {
-      id: '4',
-      name: 'Git & GitHub',
-      icon: <Zap className="w-8 h-8" />,
-      description: 'Mastered version control and collaboration',
-      category: 'official',
-      issuer: 'Open Source Chandigarh',
-      date: '2024',
-      skills: ['Git', 'GitHub', 'Collaboration'],
-      certImage: Git
-    },
-    {
-      id: '5',
-      name: 'Web Development Hackathon',
-      icon: <Code className="w-8 h-8" />,
-      description: 'Participated and excelled in web development hackathon challenges',
-      category: 'official',
-      issuer: 'TuteDude',
-      date: '2024',
-      skills: ['Web Development', 'Hackathon', 'Problem Solving'],
-      certImage: Tutedude
-    },
-    {
-      id: '6',
-      name: 'JavaScript(Basic)',
-      icon: <Zap className="w-8 h-8" />,
-      description: 'Expert in modern JavaScript ES6+ magic',
-      category: 'official',
-      issuer: 'HackerRank',
-      date: '2024',
-      skills: ['JavaScript'],
-      certImage: JavaScript
-    },
-    {
-      id: '7',
-      name: 'Coffee Powered',
-      icon: <Coffee className="w-8 h-8" />,
-      description: 'Runs on caffeine and determination and bug fixes',
-      category: 'fun',
-      issuer: 'Self-Awarded',
-      date: 'Always',
-      skills: ['Caffeine Consumption', 'Perseverance'],
-      certImage: CoffeeImage
-    },
-    {
-      id: '8',
-      name: 'Bug Hunter',
-      icon: <Bug className="w-8 h-8" />,
-      description: 'Tracked down and squashed countless bugs',
-      category: 'fun',
-      issuer: 'Self-Awarded',
-      date: 'Ongoing',
-      skills: ['Debugging', 'Problem Solving'],
-      certImage: BugImage
-    },
-    {
-      id: '9',
-      name: 'Cat Enthusiast',
-      icon: <Sparkles className="w-8 h-8" />,
-      description: 'Certified cat lover and professional cat whisperer',
-      category: 'fun',
-      issuer: 'Cats Worldwide',
-      date: 'Forever',
-      skills: ['Cat Petting', 'Meow Translation'],
-      certImage: Cat
-    },
-  ];
+const badges: Badge[] = [
+  {
+    id: '1',
+    name: 'Responsive Web Design',
+    icon: <Star className="w-8 h-8" />,
+    description: 'Demonstrated proficiency in creating adaptive and responsive web interfaces.',
+    category: 'official',
+    issuer: 'freeCodeCamp',
+    date: 'Mar 2025',
+    skills: ['HTML', 'CSS', 'Responsive Design'],
+    certImage: Freecodecamp
+  },
+  {
+    id: '2',
+    name: 'Hack The Mountain 5.0',
+    icon: <Trophy className="w-8 h-8" />,
+    description: 'Participated in a national-level hackathon and collaborated on innovative web solutions.',
+    category: 'official',
+    issuer: 'United Latino Students Association',
+    date: 'Aug 2024',
+    skills: ['Teamwork', 'Problem Solving'],
+    certImage: Hackthemountain
+  },
+  {
+    id: '3',
+    name: 'CSS (Basic)',
+    icon: <Shield className="w-8 h-8" />,
+    description: 'Certified in fundamental CSS concepts and styling best practices.',
+    category: 'official',
+    issuer: 'HackerRank',
+    date: '2024',
+    skills: ['CSS', 'Styling'],
+    certImage: CSS
+  },
+  {
+    id: '4',
+    name: 'Git & GitHub',
+    icon: <Zap className="w-8 h-8" />,
+    description: 'Completed training in version control and collaborative software development workflows.',
+    category: 'official',
+    issuer: 'Open Source Chandigarh',
+    date: '2024',
+    skills: ['Git', 'GitHub', 'Collaboration'],
+    certImage: Git
+  },
+  {
+    id: '5',
+    name: 'Web Development Hackathon',
+    icon: <Code className="w-8 h-8" />,
+    description: 'Built and presented full-stack web solutions in competitive development events.',
+    category: 'official',
+    issuer: 'TuteDude',
+    date: '2024',
+    skills: ['Web Development', 'Hackathon', 'Problem Solving'],
+    certImage: Tutedude
+  },
+  {
+    id: '6',
+    name: 'JavaScript (Basic)',
+    icon: <Zap className="w-8 h-8" />,
+    description: 'Certified in core JavaScript principles and ES6+ syntax.',
+    category: 'official',
+    issuer: 'HackerRank',
+    date: '2024',
+    skills: ['JavaScript'],
+    certImage: JavaScript
+  },
+  {
+    id: '7',
+    name: 'Coffee Powered',
+    icon: <Coffee className="w-8 h-8" />,
+    description: 'Driven by curiosity, creativity — and a fair amount of caffeine.',
+    category: 'fun',
+    issuer: 'Personal Achievement',
+    date: 'Always',
+    skills: ['Focus', 'Consistency'],
+    certImage: CoffeeImage
+  },
+  {
+    id: '8',
+    name: 'Bug Hunter',
+    icon: <Bug className="w-8 h-8" />,
+    description: 'Consistently identifies and resolves issues across frontend projects.',
+    category: 'fun',
+    issuer: 'Personal Achievement',
+    date: 'Ongoing',
+    skills: ['Debugging', 'Problem Solving'],
+    certImage: BugImage
+  },
+  {
+    id: '9',
+    name: 'Cat Enthusiast',
+    icon: <Sparkles className="w-8 h-8" />,
+    description: 'Believes every great developer deserves a cat assistant.',
+    category: 'fun',
+    issuer: 'Cats Worldwide',
+    date: 'Forever',
+    skills: ['Empathy', 'Patience'],
+    certImage: Cat
+  },
+];
 
   const filteredBadges = badges.filter(
     (badge) => filter === 'all' || badge.category === filter
@@ -176,7 +175,7 @@ export function Badges() {
       : 'none', // no shadow on small screens
   }}
 >
-  ★ BADGE COLLECTION ★
+  ★ CERTIFICATIONS ★
 </motion.h2>
 
 

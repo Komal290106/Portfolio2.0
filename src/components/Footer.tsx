@@ -143,7 +143,7 @@ export function Footer() {
                 isDark ? 'text-fuchsia-300' : 'text-amber-300'
               }`}
             >
-              FORGE ALLIANCES
+              CONTACT
             </h4>
             <p
               className={`font-mono text-xs mb-4 ${

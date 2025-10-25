@@ -63,7 +63,7 @@ export function Hero() {
             isDark ? 'text-fuchsia-300' : 'text-purple-700'
           }`}
         >
-          {'>'} Booting Komal.exe ...
+          {'>'} Initializing Portfolio.exe ...
         </motion.div>
 
         {/* Name - Pixel Style */}
@@ -101,7 +101,7 @@ export function Hero() {
               isDark ? 'text-violet-200' : 'text-green-600'
             }`}
           >
-            {'<'} Frontend Adventurer & <span className="text-orange-600 dark:text-amber-400 font-semibold">Web Developer</span> {'/>'} 
+            {'<'} Frontend Developer & <span className="text-orange-600 dark:text-amber-400 font-semibold">Creative Technologist </span> {'/>'} 
           </motion.p>
         </motion.div>
 
@@ -113,7 +113,7 @@ export function Hero() {
             isDark ? 'text-violet-300' : 'text-purple-600'
           }`}
         >
-          Weaving digital spells and crafting <span className="text-orange-600 dark:text-amber-400 font-semibold">interactive realms</span>, one quest at a time.
+         Crafting seamless and engaging web experiences with a focus on <span className="text-orange-600 dark:text-amber-400 font-semibold">performance, interactivity,</span> and  <span className="text-orange-600 dark:text-amber-400 font-semibold">design</span>.
         </motion.p>
 
         {/* Action Buttons */}
@@ -142,7 +142,7 @@ export function Hero() {
             } flex items-center gap-3 transition-all uppercase tracking-wider`}
           >
             <Gamepad2 className="w-6 h-6" />
-            Start Quest
+            Contact
           </motion.a>
 
           <motion.a
@@ -165,7 +165,7 @@ export function Hero() {
             } flex items-center gap-3 transition-all uppercase tracking-wider`}
           >
             <Download className="w-6 h-6" />
-            Hire This Sorceress
+            Download Resume
           </motion.a>
         </motion.div>
 

@@ -28,7 +28,7 @@ export function Contact() {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          _subject: `New Quest from ${formData.name}`,
+          _subject: `New message from ${formData.name}`,
         }),
       });
 
@@ -43,7 +43,6 @@ export function Contact() {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      // You can add error handling UI here if needed
     } finally {
       setIsLoading(false);
     }
@@ -60,20 +59,20 @@ export function Contact() {
 
   const contactInfo = [
     {
-      name: 'Guild Scroll',
+      name: 'Email',
       value: 'dhillonkoma@gmail.com',
       icon: Mail,
       bgColor: isDark ? 'bg-emerald-500' : 'bg-emerald-400',
     },
     {
-      name: 'Current Quest Status',
-      value: 'Open to New Collaborations (Side & Main Quests)',
+      name: 'Location',
+      value: 'Punjab, India',
       icon: MapPin,
       bgColor: isDark ? 'bg-pink-500' : 'bg-pink-400',
     },
     {
       name: 'Response Time',
-      value: 'Standard Quest-Time: 1-2 Business Cycles (Days)',
+      value: 'Typically within 1-2 business days',
       icon: Clock,
       bgColor: isDark ? 'bg-amber-500' : 'bg-amber-400',
     },
@@ -121,32 +120,30 @@ export function Contact() {
           className="text-center mb-16"
         >
           <h2
-  className={`font-mono text-4xl md:text-5xl lg:text-6xl mb-6 font-bold tracking-wider ${
-    isDark ? 'text-fuchsia-400' : 'text-purple-700'
-  }`}
-  style={{
-    // Apply shadows only for md+ screens
-    textShadow: window.innerWidth >= 768
-      ? isDark
-        ? '2px 2px 0px #FFFFFF' // White shadow in dark mode
-        : '2px 2px 0px rgba(255,152,0,0.8)' // Orange shadow in light mode
-      : 'none', // No shadow on mobile
-  }}
->
-  ⚔️ START A NEW QUEST
-</h2>
-
+            className={`font-mono text-4xl md:text-5xl lg:text-6xl mb-6 font-bold tracking-wider ${
+              isDark ? 'text-fuchsia-400' : 'text-purple-700'
+            }`}
+            style={{
+              textShadow: window.innerWidth >= 768
+                ? isDark
+                  ? '2px 2px 0px #FFFFFF'
+                  : '2px 2px 0px rgba(255,152,0,0.8)'
+                : 'none',
+            }}
+          >
+            GET IN TOUCH
+          </h2>
           <p
             className={`font-mono text-lg md:text-xl max-w-2xl mx-auto ${
               isDark ? 'text-violet-200' : 'text-green-600'
             }`}
           >
-            Got an idea brewing in your realm? Send a raven — let's forge something legendary together.
+            Have an idea, project, or collaboration in mind? Let's connect and create something meaningful together.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Contact Information - Moved left with larger text */}
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -159,7 +156,7 @@ export function Contact() {
                   isDark ? 'text-fuchsia-400' : 'text-orange-600'
                 }`}
               >
-                CONTACT GUILD MASTER
+                Contact Information
               </h3>
             </div>
 
@@ -215,7 +212,7 @@ export function Contact() {
                   isDark ? 'text-fuchsia-300' : 'text-orange-600'
                 }`}
               >
-                JOIN AT PARTY
+                Connect With Me
               </p>
               <div className="flex gap-3">
                 {socialLinks.map((link) => {
@@ -238,7 +235,7 @@ export function Contact() {
             </motion.div>
           </motion.div>
 
-          {/* Contact Form - Larger for laptops */}
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -268,10 +265,10 @@ export function Contact() {
                 }}
               >
                 <h3 className="font-mono text-xl font-bold tracking-wider mb-2">
-                  TRANSMISSION SUCCESSFUL!
+                  Message Sent Successfully!
                 </h3>
                 <p className="font-mono text-base">
-                  Guild Master Komal is reviewing your quest details.
+                  Thank you for your message. I'll get back to you soon.
                 </p>
               </motion.div>
             )}
@@ -285,7 +282,7 @@ export function Contact() {
                       isDark ? 'text-fuchsia-300' : 'text-purple-700'
                     }`}
                   >
-                    ADVENTURER NAME
+                    YOUR NAME
                   </label>
                   <input
                     type="text"
@@ -293,7 +290,7 @@ export function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="State your name, brave traveler..."
+                    placeholder="Enter your name"
                     required
                     className={`w-full px-4 py-3 rounded-none border-2 font-mono text-base transition-all ${
                       isDark
@@ -310,7 +307,7 @@ export function Contact() {
                       isDark ? 'text-fuchsia-300' : 'text-purple-700'
                     }`}
                   >
-                    CONTACT SIGNAL
+                    EMAIL ADDRESS
                   </label>
                   <input
                     type="email"
@@ -318,7 +315,7 @@ export function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Your Raven-Mail Address..."
+                    placeholder="Enter your email address"
                     required
                     className={`w-full px-4 py-3 rounded-none border-2 font-mono text-base transition-all ${
                       isDark
@@ -335,14 +332,14 @@ export function Contact() {
                       isDark ? 'text-fuchsia-300' : 'text-purple-700'
                     }`}
                   >
-                    YOUR RESEARCH
+                    MESSAGE
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Describe your Quest / Mission Details..."
+                    placeholder="Tell me about your project or how I can help you..."
                     required
                     rows={5}
                     className={`w-full px-4 py-3 rounded-none border-2 font-mono text-base transition-all resize-none ${
@@ -381,7 +378,7 @@ export function Contact() {
                   ) : (
                     <>
                       <Send className="w-5 h-5" />
-                      SEND QUEST SCROLL
+                      SEND MESSAGE
                     </>
                   )}
                 </motion.button>

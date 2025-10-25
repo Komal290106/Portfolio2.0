@@ -163,49 +163,51 @@ export function Loader({ setIsLoading }: LoaderProps) {
           </p>
         </motion.div>
 
-        {/* Progress Bar Container */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="w-72 md:w-80 mb-6"
-        >
-          {/* Bar Background */}
-          <div className="border-2 border-fuchsia-400 p-1.5 bg-slate-800 mb-3">
-            <div className="w-full bg-slate-900 h-6 relative overflow-hidden border border-fuchsia-300">
-              {/* Animated Fill */}
-              <motion.div
-                className="h-full bg-gradient-to-r from-fuchsia-600 via-fuchsia-500 to-fuchsia-400"
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-                style={{
-                  boxShadow: '0 0 15px rgba(232, 121, 249, 0.8), inset 0 0 8px rgba(232, 121, 249, 0.4)',
-                }}
-              />
+       {/* Progress Bar Container */}
+<motion.div
+  initial={{ opacity: 0, y: 15 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.3 }}
+  className="w-72 md:w-80 mb-6"
+>
+  {/* Label Row (percentage on left) */}
+  <div className="flex justify-between items-center mb-2">
+    <motion.p
+      className="font-mono text-fuchsia-300 text-base font-bold"
+      animate={{ opacity: [0.8, 1, 0.8] }}
+      transition={{ duration: 1.2, repeat: Infinity }}
+    >
+      {Math.round(progress)}%
+    </motion.p>
+    <p className="font-mono text-violet-300 text-xs tracking-widest">
+      {progress < 100 ? 'LOADING...' : 'COMPLETE!'}
+    </p>
+  </div>
 
-              {/* Animated Scanlines */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-15"
-                animate={{ x: ['0%', '100%'] }}
-                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              />
-            </div>
-          </div>
+  {/* Bar Background */}
+  <div className="border-2 border-fuchsia-400 p-1.5 bg-slate-800">
+    <div className="w-full bg-slate-900 h-6 relative overflow-hidden border border-fuchsia-300">
+      {/* Animated Fill */}
+      <motion.div
+        className="h-full bg-gradient-to-r from-fuchsia-600 via-fuchsia-500 to-fuchsia-400"
+        animate={{ width: `${progress}%` }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        style={{
+          boxShadow:
+            '0 0 15px rgba(232, 121, 249, 0.8), inset 0 0 8px rgba(232, 121, 249, 0.4)',
+        }}
+      />
 
-          {/* Progress Percentage */}
-          <div className="flex justify-between items-center">
-            <motion.p
-              className="font-mono text-fuchsia-300 text-base font-bold"
-              animate={{ opacity: [0.8, 1, 0.8] }}
-              transition={{ duration: 1.2, repeat: Infinity }}
-            >
-              {Math.round(progress)}%
-            </motion.p>
-            <p className="font-mono text-fuchsia-300 text-xs">
-              [{'='.repeat(Math.round(progress / 5))}{' '.repeat(20 - Math.round(progress / 5))}]
-            </p>
-          </div>
-        </motion.div>
+      {/* Animated Scanlines */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-15"
+        animate={{ x: ['0%', '100%'] }}
+        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+      />
+    </div>
+  </div>
+</motion.div>
+
 
         {/* Status Indicator */}
         <motion.div

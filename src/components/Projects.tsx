@@ -138,7 +138,7 @@ export function Projects() {
               isDark ? 'text-fuchsia-300' : 'text-purple-700'
             }`}
           >
-            {'>'} Loading quest data...
+            {'>'} Loading projects...
           </motion.div>
 
           <motion.h2
@@ -152,7 +152,7 @@ export function Projects() {
 }`}
 
           >
-            QUEST LOG
+            PROJECT SHOWCASE
           </motion.h2>
 
           <motion.p
@@ -164,7 +164,7 @@ export function Projects() {
               isDark ? 'text-violet-300' : 'text-purple-600'
             }`}
           >
-            {'<'} Complete your journey through my projects {'/>'} 
+            {'<'} A curated collection of my work {'/>'} 
           </motion.p>
         </motion.div>
 
@@ -183,7 +183,7 @@ export function Projects() {
             transition={{ duration: 2, repeat: Infinity }}
           >
             <Sparkles className="w-3 h-3" />
-            ★★★ MAIN QUEST ★★★
+            ★★★ FEATURED PROJECT ★★★
             <Sparkles className="w-3 h-3" />
           </motion.div>
 
@@ -261,7 +261,7 @@ export function Projects() {
                     <p className={`font-mono text-xs mb-1 tracking-wider ${
                       isDark ? 'text-amber-400' : 'text-orange-600'
                     }`}>
-                      REWARD: LEGENDARY
+                      PROJECT TYPE: FEATURED
                     </p>
                     <h3 className={`font-mono text-lg md:text-xl font-bold mb-1 tracking-wider ${
                       isDark ? 'text-fuchsia-400' : 'text-purple-700'
@@ -271,7 +271,7 @@ export function Projects() {
                     <p className={`font-mono text-xs tracking-wide mb-2 ${
                       isDark ? 'text-violet-300' : 'text-purple-600'
                     }`}>
-                      [Primary Objective]
+                      [About the Project]
                     </p>
                   </motion.div>
 
@@ -321,7 +321,7 @@ export function Projects() {
                     }`}
                   >
                     <ExternalLink className="w-4 h-4" />
-                    Play Now
+                   View Live
                   </motion.a>
                   <motion.a
   href={mainQuest.githubUrl}
@@ -363,7 +363,7 @@ export function Projects() {
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            ★★ SIDE QUESTS ★★
+            ★★ OTHER PROJECTS ★★
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -411,7 +411,7 @@ export function Projects() {
                     <p className={`font-mono text-xs tracking-wider ${
                       isDark ? 'text-amber-400' : 'text-orange-600'
                     }`}>
-                      [QUEST ID: {String(project.id).padStart(3, '0')}]
+                      [PROJECT ID: {String(project.id).padStart(3, '0')}]
                     </p>
                   </div>
                 </div>
@@ -527,7 +527,7 @@ export function Projects() {
                   <p className={`font-mono text-xs mb-1 tracking-wider ${
                     isDark ? 'text-amber-400' : 'text-orange-600'
                   }`}>
-                    [QUEST DETAILS]
+                    [PROJECT ID]
                   </p>
                   <h2 className={`font-mono text-xl font-bold mb-3 tracking-wider ${
                     isDark ? 'text-fuchsia-400' : 'text-purple-700'
@@ -546,7 +546,7 @@ export function Projects() {
                     <p className={`font-mono text-xs mb-2 tracking-wider ${
                       isDark ? 'text-fuchsia-300' : 'text-purple-600'
                     }`}>
-                      TOOLS EQUIPPED:
+                      TECH STACK:
                     </p>
                     <div className="flex flex-wrap gap-1">
                       {selectedProject.tags.map((tag) => (

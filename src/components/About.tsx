@@ -119,7 +119,7 @@ export function About() {
             isDark ? 'text-fuchsia-300' : 'text-purple-700'
           }`}
         >
-          {'>'} Loading character data...
+          {'>'} Loading profile data...
         </motion.div>
 
         <motion.h2
@@ -137,7 +137,7 @@ export function About() {
           // Remove shadow on mobile
           suppressHydrationWarning
         >
-          CHARACTER PROFILE
+          PROFILE OVERVIEW
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8 items-start max-w-5xl mx-auto">
@@ -309,10 +309,12 @@ export function About() {
                 QUEST LOG:
               </h3>
               <p className={`font-mono text-sm ${isDark ? 'text-violet-100' : 'text-gray-700'} leading-relaxed mb-3`}>
-               Hi! I'm Komal — I mix code, design, and chaos to build web experiences that feel alive. 
-               Currently grinding XP in React & Framer Motion while avoiding CSS dragons. 
-               Always seeking the next quest to level up creativity, pixels, and a touch of magic.
-              </p>
+  Hi, I'm Komal - a frontend developer passionate about crafting smooth, 
+  interactive, and visually engaging web experiences. 
+  I enjoy blending design and development to create interfaces that feel intuitive and alive. 
+  Currently focusing on React, Framer Motion, and accessibility to bring creative ideas to life.
+</p>
+
 
               {/* Interactive Quest Log Icons - Aligned to left */}
               <div className="flex gap-4">
@@ -378,7 +380,7 @@ export function About() {
                     CLASS:
                   </span>
                   <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-100' : 'text-gray-800'}`}>
-                    Frontend Sorceress <Sparkles className="inline w-4 h-4" />
+                    Frontend Developer <Sparkles className="inline w-4 h-4" />
                   </span>
                 </div>
                 <div className="flex justify-between items-center pb-2 border-b-2 border-dashed" style={{
@@ -388,24 +390,23 @@ export function About() {
                     LEVEL:
                   </span>
                   <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-100' : 'text-gray-800'}`}>
-                    19 (3rd Sem Coder)
+                    19 (Undergraduate, 3rd Semester)
                   </span>
                 </div>
                 <div 
-                  className="flex justify-between items-center pb-2 border-b-2 border-dashed cursor-pointer group" 
-                  style={{
-                    borderColor: isDark ? '#e879f9' : '#FF9800'
-                  }}
-                  onMouseEnter={() => setHp('Fueled by caffeine')}
-                  onMouseLeave={() => setHp('100 HP')}
-                >
-                  <span className={`font-mono text-base font-bold ${isDark ? 'text-fuchsia-300' : 'text-orange-600'}`}>
-                    HP:
-                  </span>
-                  <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-100' : 'text-gray-800'} transition-all`}>
-                    {hp}
-                  </span>
-                </div>
+  className="flex justify-between items-center pb-2 border-b-2 border-dashed cursor-pointer group" 
+  style={{
+    borderColor: isDark ? '#e879f9' : '#FF9800'
+  }}
+>
+  <span className={`font-mono text-base font-bold ${isDark ? 'text-fuchsia-300' : 'text-orange-600'}`}>
+    Location:
+  </span>
+  <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-100' : 'text-gray-800'}`}>
+    India 🇮🇳
+  </span>
+</div>
+
               </div>
             </div>
 

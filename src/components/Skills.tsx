@@ -122,7 +122,7 @@ export function Skills() {
       : 'sm:[text-shadow:2px_2px_0px_rgba(255,152,0,0.8),4px_4px_15px_rgba(255,152,0,0.3)]' // Orange shadow
   }`}
 >
-  🌳 SKILL ORCHARD 🌳
+     SKILLS & TOOLS
 </motion.h2>
 
 
@@ -135,7 +135,7 @@ export function Skills() {
             isDark ? 'text-violet-300' : 'text-purple-600'
           }`}
         >
-          Where code fruits grow from caffeine and curiosity ☕🌱
+          An interactive overview of the tools and technologies that power my projects.
         </motion.p>
 
         {/* Orchard Container */}
@@ -324,9 +324,10 @@ export function Skills() {
           className="flex flex-wrap justify-center gap-8 px-4"
         >
           {[
-            { label: 'Frontend Sorcery', category: 'frontend' },
-            { label: 'Backend Alchemy', category: 'backend' },
-            { label: 'Quest Tools', category: 'tools' },
+            { label: 'Frontend Development', category: 'frontend' },
+{ label: 'Backend Development', category: 'backend' },
+{ label: 'Tools & Design', category: 'tools' },
+
           ].map((item) => {
             const colors = getCategoryColor(item.category);
             return (
