@@ -9,6 +9,7 @@ export function Footer() {
   const quickLinks = [
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Badges', href: '#badges' },
     { name: 'Quests', href: '#quests' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -91,7 +92,7 @@ export function Footer() {
                 isDark ? 'text-violet-200' : 'text-amber-100'
               }`}
             >
-              Frontend developer crafting immersive digital experiences with modern technologies and creative solutions.
+              Web developer crafting immersive digital experiences with modern technologies and creative solutions.
             </p>
           </motion.div>
 

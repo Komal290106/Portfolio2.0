@@ -33,6 +33,7 @@ export function Header() {
   // ✅ Simplified recruiter-friendly links
   const quickLinks = [
     { name: 'About', href: '#about' },
+    { name: 'Badges', href: '#badges' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#quests' },
     { name: 'Contact', href: '#contact' },

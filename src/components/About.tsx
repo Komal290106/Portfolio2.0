@@ -172,7 +172,7 @@ export function About() {
                 {/* Avatar Image */}
                 <img 
                   src={Avatar} 
-                  alt="Komal - Frontend Developer"
+                  alt="Komal - Web Developer"
                   className="w-full h-full object-cover"
                 />
 
@@ -259,28 +259,49 @@ export function About() {
               </h3>
               <div className="space-y-3">
                 {traits.map((trait, idx) => (
-                  <div key={trait.name}>
-                    <div className="flex justify-between mb-1.5">
-                      <span className={`font-mono text-sm font-medium ${isDark ? 'text-violet-100' : 'text-gray-800'}`}>
-                        {trait.name}
-                      </span>
-                      <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-400' : 'text-orange-600'}`}>
-                        {trait.value}%
-                      </span>
-                    </div>
-                    <div className={`h-5 rounded-none border-2 ${
-                      isDark ? 'bg-slate-900 border-slate-700' : 'bg-gray-200 border-gray-400'
-                    } overflow-hidden`}>
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${trait.value}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, delay: idx * 0.15, ease: "easeOut" }}
-                        className={`h-full bg-gradient-to-r ${trait.color}`}
-                      />
-                    </div>
-                  </div>
-                ))}
+  <div 
+  key={trait.name} 
+  className={`relative group ${trait.name === "Debug Patience" ? "cursor-pointer" : ""}`}
+>
+    <div className="flex justify-between mb-1.5">
+      <span className={`font-mono text-sm font-medium ${isDark ? 'text-violet-100' : 'text-gray-800'}`}>
+        {trait.name}
+      </span>
+      <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-400' : 'text-orange-600'}`}>
+        {trait.value}%
+      </span>
+    </div>
+
+    <div className={`h-5 rounded-none border-2 ${
+      isDark ? 'bg-slate-900 border-slate-700' : 'bg-gray-200 border-gray-400'
+    } overflow-hidden`}>
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: `${trait.value}%` }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, delay: idx * 0.15 }}
+        className={`h-full bg-gradient-to-r ${trait.color}`}
+      />
+    </div>
+
+    {/* Tooltip only for debug patience */}
+    {trait.name === "Debug Patience" && (
+      <div
+        className={`
+          absolute -top-8 right-0 px-2 py-1 whitespace-nowrap font-mono text-xs rounded-none border-2
+          opacity-0 group-hover:opacity-100 transition-opacity duration-200
+          ${isDark 
+            ? "bg-slate-800 border-fuchsia-400 text-fuchsia-200" 
+            : "bg-white border-orange-500 text-orange-700"
+          }
+        `}
+      >
+        Debugging is 50% code, 50% crying in console logs 💀
+      </div>
+    )}
+  </div>
+))}
+
               </div>
             </motion.div>
           </motion.div>
@@ -309,7 +330,7 @@ export function About() {
                 QUEST LOG:
               </h3>
               <p className={`font-mono text-sm ${isDark ? 'text-violet-100' : 'text-gray-700'} leading-relaxed mb-3`}>
-  Hi, I'm Komal - a frontend developer passionate about crafting smooth, 
+  Hi, I'm Komal - a web developer passionate about crafting smooth, 
   interactive, and visually engaging web experiences. 
   I enjoy blending design and development to create interfaces that feel intuitive and alive. 
   Currently focusing on React, Framer Motion, and accessibility to bring creative ideas to life.
@@ -380,7 +401,7 @@ export function About() {
                     CLASS:
                   </span>
                   <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-100' : 'text-gray-800'}`}>
-                    Frontend Developer <Sparkles className="inline w-4 h-4" />
+                    Web Developer <Sparkles className="inline w-4 h-4" />
                   </span>
                 </div>
                 <div className="flex justify-between items-center pb-2 border-b-2 border-dashed" style={{

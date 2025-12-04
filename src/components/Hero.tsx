@@ -101,7 +101,7 @@ export function Hero() {
               isDark ? 'text-violet-200' : 'text-green-600'
             }`}
           >
-            {'<'} Frontend Developer & <span className="text-orange-600 dark:text-amber-400 font-semibold">Creative Technologist </span> {'/>'} 
+            {'<'} Web Developer & <span className="text-orange-600 dark:text-amber-400 font-semibold">Creative Technologist </span> {'/>'}
           </motion.p>
         </motion.div>
 

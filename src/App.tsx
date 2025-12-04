@@ -9,10 +9,11 @@ import { Contact } from './components/Contact';
 import { KonamiMode } from './components/KonamiMode';
 import { Footer } from './components/Footer';
 import { Loader } from './components/loader';
-import FloatingPumpkin from './components/FloatingPumpkin'; 
+// import FloatingPumpkin from './components/FloatingPumpkin'; 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import FloatingDiya from './components/FloatingDiya';
+// import FloatingSanta from './components/FloatingSanta';
 
 function AppContent() {
   const { theme } = useTheme();
@@ -46,8 +47,10 @@ function AppContent() {
       {/* <FloatingDiya /> */}
 
               {/* 🎃 Floating Halloween Pumpkin Portal */}
-              <FloatingPumpkin />
+              {/* <FloatingPumpkin /> */}
 
+              {/* 🎅 Floating Christmas Santa */}
+              {/* <FloatingSanta /> */}
               <About />
               <Badges />
               <Skills />
