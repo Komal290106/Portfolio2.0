@@ -8,8 +8,8 @@ export function Footer() {
 
   const quickLinks = [
     { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
     { name: 'Badges', href: '#badges' },
+    { name: 'Skills', href: '#skills' },
     { name: 'Quests', href: '#quests' },
     { name: 'Contact', href: '#contact' },
   ];
