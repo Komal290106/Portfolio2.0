@@ -71,118 +71,123 @@ export function Footer() {
           </p>
         </motion.div>
 
-        {/* Main Content */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-8">
-          {/* Brand - Increased text */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-center lg:text-left max-w-xs"
-          >
-            <h3
-              className={`font-mono text-xl font-bold mb-3 tracking-wider ${
-                isDark ? 'text-fuchsia-400' : 'text-amber-400'
-              }`}
-            >
-              KOMAL
-            </h3>
-            <p
-              className={`font-mono text-sm leading-relaxed ${
-                isDark ? 'text-violet-200' : 'text-amber-100'
-              }`}
-            >
-              Web developer crafting immersive digital experiences with modern technologies and creative solutions.
-            </p>
-          </motion.div>
+{/* Main Content - PERFECT SYMMETRY FIX */}
+<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12 items-start text-center lg:text-left">
+  
+  {/* LEFT — Brand */}
+  <motion.div
+    initial={{ opacity: 0, x: -30 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true }}
+    className="max-w-xs mx-auto lg:mx-0"
+  >
+    <h3
+      className={`font-mono text-xl font-bold mb-3 tracking-wider ${
+        isDark ? 'text-fuchsia-400' : 'text-amber-400'
+      }`}
+    >
+      KOMAL
+    </h3>
 
-          {/* Quick Links - Added breathing space */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h4
-              className={`font-mono font-bold mb-4 tracking-wider text-sm ${
-                isDark ? 'text-fuchsia-300' : 'text-amber-300'
-              }`}
-            >
-              CONTINUE JOURNEY
-            </h4>
-            <div className="flex flex-wrap justify-center gap-4">
-              {quickLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className={`font-mono text-xs px-4 py-2 rounded transition-all ${
-                    isDark 
-                      ? 'text-violet-200 hover:text-fuchsia-400 bg-purple-900/30 hover:bg-purple-800/50' 
-                      : 'text-amber-100 hover:text-amber-400 bg-amber-900/30 hover:bg-amber-800/50'
-                  }`}
-                >
-                  {link.name}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
+    <p
+      className={`font-mono text-sm leading-relaxed ${
+        isDark ? 'text-violet-200' : 'text-amber-100'
+      }`}
+    >
+      Web developer crafting immersive digital experiences with modern
+      technologies and creative solutions.
+    </p>
+  </motion.div>
 
-          {/* Contact & Social - Moved social icons below */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+  {/* CENTER — Quick Links */}
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="text-center"
+  >
+    <h4
+      className={`font-mono font-bold mb-4 tracking-wider text-sm ${
+        isDark ? 'text-fuchsia-300' : 'text-amber-300'
+      }`}
+    >
+      CONTINUE JOURNEY
+    </h4>
+
+    <div className="flex flex-wrap justify-center gap-4">
+      {quickLinks.map((link, index) => (
+        <motion.a
+          key={link.name}
+          href={link.href}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ scale: 1.05, y: -2 }}
+          className={`font-mono text-xs px-4 py-2 rounded transition-all ${
+            isDark
+              ? 'text-violet-200 hover:text-fuchsia-400 bg-purple-900/30 hover:bg-purple-800/50'
+              : 'text-amber-100 hover:text-amber-400 bg-amber-900/30 hover:bg-amber-800/50'
+          }`}
+        >
+          {link.name}
+        </motion.a>
+      ))}
+    </div>
+  </motion.div>
+
+  {/* RIGHT — Contact */}
+  <motion.div
+    initial={{ opacity: 0, x: 30 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true }}
+    className="lg:text-right text-center"
+  >
+    <h4
+      className={`font-mono font-bold mb-3 tracking-wider text-sm ${
+        isDark ? 'text-fuchsia-300' : 'text-amber-300'
+      }`}
+    >
+      CONTACT
+    </h4>
+
+    <p
+      className={`font-mono text-xs mb-4 ${
+        isDark ? 'text-violet-200' : 'text-amber-100'
+      }`}
+    >
+      dhillonkomal59@gmail.com
+    </p>
+
+    <div className="flex justify-center lg:justify-end gap-3">
+      {socialLinks.map((link, index) => {
+        const Icon = link.icon;
+        return (
+          <motion.a
+            key={link.name}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="text-center lg:text-right"
+            transition={{ delay: index * 0.1 }}
+            whileHover={{ scale: 1.2, y: -3 }}
+            whileTap={{ scale: 0.9 }}
+            className={`p-2 rounded-lg transition-all ${
+              isDark
+                ? 'text-violet-200 hover:text-fuchsia-400 bg-purple-900/30'
+                : 'text-amber-100 hover:text-amber-400 bg-amber-900/30'
+            }`}
           >
-            <h4
-              className={`font-mono font-bold mb-3 tracking-wider text-sm ${
-                isDark ? 'text-fuchsia-300' : 'text-amber-300'
-              }`}
-            >
-              CONTACT
-            </h4>
-            <p
-              className={`font-mono text-xs mb-4 ${
-                isDark ? 'text-violet-200' : 'text-amber-100'
-              }`}
-            >
-              dhillonkomal59@gmail.com
-            </p>
-            
-            {/* Social Links moved here */}
-            <div className="flex justify-center lg:justify-end gap-3">
-              {socialLinks.map((link, index) => {
-                const Icon = link.icon;
-                return (
-                  <motion.a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.2, y: -3 }}
-                    whileTap={{ scale: 0.9 }}
-                    className={`p-2 rounded-lg transition-all ${
-                      isDark 
-                        ? 'text-violet-200 hover:text-fuchsia-400 bg-purple-900/30' 
-                        : 'text-amber-100 hover:text-amber-400 bg-amber-900/30'
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </motion.a>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
+            <Icon className="w-4 h-4" />
+          </motion.a>
+        );
+      })}
+    </div>
+  </motion.div>
+</div>
+
 
         {/* Konami Code Hint */}
         <motion.div

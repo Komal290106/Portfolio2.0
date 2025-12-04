@@ -142,18 +142,23 @@ export function Projects() {
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className={`font-mono text-3xl md:text-4xl text-center mb-8 tracking-wider font-bold ${
-  isDark 
-    ? 'text-fuchsia-400 sm:[text-shadow:3px_3px_0px_rgba(255,255,255,0.8),8px_8px_20px_rgba(232,121,249,0.5)]'
-    : 'text-purple-700 sm:[text-shadow:3px_3px_0px_rgba(255,152,0,0.8),8px_8px_20px_rgba(255,152,0,0.4)]'
-}`}
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  className={`font-mono text-3xl md:text-4xl text-center mb-8 tracking-wider font-bold ${
+    isDark
+      ? 'text-fuchsia-400'
+      : 'text-purple-700'
+  }`}
+  style={{
+    textShadow: isDark
+      ? '2px 2px 0px rgba(255,255,255,0.85)'   // same as contact
+      : '2px 2px 0px rgba(255,152,0,0.7)',     // same as contact
+  }}
+>
+  PROJECT SHOWCASE
+</motion.h2>
 
-          >
-            PROJECT SHOWCASE
-          </motion.h2>
 
           <motion.p
             initial={{ opacity: 0 }}
