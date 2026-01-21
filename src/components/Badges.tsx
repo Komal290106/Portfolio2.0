@@ -21,6 +21,7 @@ import {
   GitBranch,
   Lightbulb,
   Cat,
+  Rocket,
 } from 'lucide-react';
 
 import { useState } from 'react';
@@ -38,6 +39,7 @@ import JavaScript from '../assets/javascript.png';
 import VaultHeist from '../assets/vaultheist.png';
 import TataCrucible from '../assets/tatacrucible.png';
 import PromptLab from '../assets/promptlab.png';
+import Vibeathon from '../assets/vibeathon.png';
 
 type BadgeCategory = 'all' | 'courses' | 'hackathons' | 'events' | 'fun';
 
@@ -131,9 +133,22 @@ export function Badges() {
       certImage: VaultHeist,
     },
 
+    {
+  id: '7',
+  name: 'Vibeathon',
+  icon: <Rocket className="w-8 h-8" />,
+  description: 'Designed and pitched a creative project in a fast-paced, innovation-focused hackathon.',
+  category: 'hackathons',
+  issuer: 'Nerds Room',
+  date: 'Dec 2025',
+  skills: ['Creativity', 'Ideation', 'Presentation', 'Team Collaboration'],
+  certImage: Vibeathon,
+},
+
+
     // 🔵 EVENTS
     {
-      id: '7',
+      id: '8',
       name: 'Git & GitHub Workshop',
       icon: <GitBranch className="w-8 h-8" />,
       description: 'Hands-on workshop covering Git essentials and GitHub workflows.',
@@ -144,7 +159,7 @@ export function Badges() {
       certImage: Git,
     },
     {
-      id: '8',
+      id: '9',
       name: 'TATA Crucible Campus Quiz 2025',
       icon: <Lightbulb className="w-8 h-8" />,
       description: 'Participated in the national-level TATA Crucible Campus Quiz.',
@@ -155,8 +170,8 @@ export function Badges() {
       certImage: TataCrucible,
     },
     {
-      id: '9',
-      name: 'The Prompt Lab – Innovation Event',
+      id: '10',
+      name: 'The Prompt Lab - Innovation Event',
       icon: <Sparkles className="w-8 h-8" />,
       description: 'Explored prompt engineering and creativity in AI-focused workshop.',
       category: 'events',
@@ -168,7 +183,7 @@ export function Badges() {
 
     // 💜 FUN
     {
-      id: '10',
+      id: '11',
       name: 'Coffee Powered',
       icon: <Coffee className="w-8 h-8" />,
       description: 'Runs entirely on caffeine, code, and questionable sleep schedules.',
@@ -179,7 +194,7 @@ export function Badges() {
       certImage: CoffeeImage,
     },
     {
-      id: '11',
+      id: '12',
       name: 'Bug Hunter',
       icon: <Bug className="w-8 h-8" />,
       description: 'Knows how to find bugs faster than they appear.',
@@ -190,7 +205,7 @@ export function Badges() {
       certImage: BugImage,
     },
     {
-      id: '12',
+      id: '13',
       name: 'Cat Enthusiast',
       icon: <Cat className="w-8 h-8" />,
       description: 'Believes every great developer deserves a cat assistant.',
