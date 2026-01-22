@@ -8,8 +8,8 @@ import {
   Sparkles,
   Trophy,
   Star,
-  Shield, // Kept this import just in case, though ShieldCheck is used below
-  Zap,
+  //Shield, // Kept this import just in case, though ShieldCheck is used below
+  //Zap,
   X,
   Code2,
   Award,
