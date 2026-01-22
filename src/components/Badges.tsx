@@ -141,7 +141,7 @@ export function Badges() {
   category: 'hackathons',
   issuer: 'Nerds Room',
   date: 'Dec 2025',
-  skills: ['Creativity', 'Ideation', 'Presentation', 'Team Collaboration'],
+  skills: ['Creativity', 'Ideation', 'Presentation'],
   certImage: Vibeathon,
 },
 
