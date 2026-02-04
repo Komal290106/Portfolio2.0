@@ -10,7 +10,7 @@ export function Footer() {
     { name: 'About', href: '#about' },
     { name: 'Badges', href: '#badges' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Quests', href: '#quests' },
+    { name: 'Projects', href: '#quests' },
     { name: 'Contact', href: '#contact' },
   ];
 

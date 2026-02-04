@@ -24,23 +24,23 @@ export function Skills() {
 
   const fruits: Fruit[] = [
     // Frontend
-    { id: 'html', name: 'HTML', category: 'frontend', icon: <FileCode className="w-6 h-6" />, x: 12, y: 20 },
-    { id: 'css', name: 'CSS', category: 'frontend', icon: <Layers className="w-6 h-6" />, x: 28, y: 18 },
-    { id: 'javascript', name: 'JavaScript', category: 'frontend', icon: <Zap className="w-6 h-6" />, x: 50, y: 10 },
-    { id: 'react', name: 'React', category: 'frontend', icon: <Code2 className="w-6 h-6" />, x: 72, y: 18 },
-    { id: 'tailwind', name: 'Tailwind CSS', category: 'frontend', icon: <Monitor className="w-6 h-6" />, x: 88, y: 20 },
+    { id: 'html', name: 'HTML', category: 'frontend', icon: <FileCode className="w-6 h-6" />, x: 10, y: 17 },
+    { id: 'css', name: 'CSS', category: 'frontend', icon: <Layers className="w-6 h-6" />, x: 26, y: 14 },
+    { id: 'javascript', name: 'JavaScript', category: 'frontend', icon: <Zap className="w-6 h-6" />, x: 48, y: 2 },
+    { id: 'react', name: 'React', category: 'frontend', icon: <Code2 className="w-6 h-6" />, x: 72, y: 10 },
+    { id: 'tailwind', name: 'Tailwind CSS', category: 'frontend', icon: <Monitor className="w-6 h-6" />, x: 85, y: 17 },
 
     // Backend
-    { id: 'nodejs', name: 'Node.js', category: 'backend', icon: <Package className="w-6 h-6" />, x: 22, y: 45 },
-    { id: 'express', name: 'Express.js', category: 'backend', icon: <Code2 className="w-6 h-6" />, x: 50, y: 42 },
-    { id: 'mongodb', name: 'MongoDB', category: 'backend', icon: <Database className="w-6 h-6" />, x: 78, y: 45 },
+    { id: 'nodejs', name: 'Node.js', category: 'backend', icon: <Package className="w-6 h-6" />, x: 20, y: 42 },
+    { id: 'express', name: 'Express.js', category: 'backend', icon: <Code2 className="w-6 h-6" />, x: 48, y: 42 },
+    { id: 'mongodb', name: 'MongoDB', category: 'backend', icon: <Database className="w-6 h-6" />, x: 78, y: 40 },
 
     // Tools & Design
-    { id: 'git', name: 'Git', category: 'tools', icon: <GitBranch className="w-6 h-6" />, x: 15, y: 70 },
+    { id: 'git', name: 'Git', category: 'tools', icon: <GitBranch className="w-6 h-6" />, x: 12, y: 70 },
     { id: 'vscode', name: 'VS Code', category: 'tools', icon: <Code2 className="w-6 h-6" />, x: 32, y: 75 },
-    { id: 'figma', name: 'Figma', category: 'tools', icon: <Figma className="w-6 h-6" />, x: 50, y: 72 },
-    { id: 'vite', name: 'Vite', category: 'tools', icon: <Zap className="w-6 h-6" />, x: 68, y: 75 },
-    { id: 'canva', name: 'Canva', category: 'tools', icon: <Palette className="w-6 h-6" />, x: 85, y: 70 },
+    { id: 'figma', name: 'Figma', category: 'tools', icon: <Figma className="w-6 h-6" />, x: 48, y: 70 },
+    { id: 'vite', name: 'Vite', category: 'tools', icon: <Zap className="w-6 h-6" />, x: 65, y: 75 },
+    { id: 'canva', name: 'Canva', category: 'tools', icon: <Palette className="w-6 h-6" />, x: 85, y: 65 },
   ];
 
   const getCategoryColor = (category: string) => {
@@ -181,12 +181,11 @@ export function Skills() {
             <line x1="70" y1="60" x2="78" y2="45" stroke={isDark ? '#CC9966' : '#A0826D'} strokeWidth="1.1" strokeDasharray="2,2" />
 
             {/* Tertiary branches - tools tier */}
-            <line x1="30" y1="60" x2="15" y2="70" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="1" strokeDasharray="1,1" />
-            <line x1="30" y1="60" x2="32" y2="75" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="1" strokeDasharray="1,1" />
-            <line x1="50" y1="75" x2="50" y2="72" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="1" strokeDasharray="1,1" />
-            <line x1="70" y1="60" x2="68" y2="75" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="1" strokeDasharray="1,1" />
-            <line x1="70" y1="60" x2="85" y2="70" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="1" strokeDasharray="1,1" />
-
+            <line x1="30" y1="60" x2="15" y2="70" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="0.9" strokeDasharray="1,1" />
+            <line x1="30" y1="60" x2="32" y2="75" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="0.9" strokeDasharray="1,1" />
+            <line x1="50" y1="75" x2="50" y2="72" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="0.9" strokeDasharray="1,1" />
+            <line x1="70" y1="60" x2="68" y2="75" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="0.9" strokeDasharray="1,1" />
+            <line x1="70" y1="60" x2="85" y2="70" stroke={isDark ? '#B8860B' : '#DAA520'} strokeWidth="0.9" strokeDasharray="1,1" />
             {/* Vine connections to fruits with animation */}
             {fruits.map((fruit) => (
               <motion.line

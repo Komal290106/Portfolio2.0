@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
-import { Heart, Coffee, Code, Laptop, Keyboard, Mouse, Headphones, Brain, ScrollText, Zap, Briefcase, Sparkles } from 'lucide-react';
+import { Heart, Coffee, Code, Laptop, Keyboard, Mouse, Headphones, Brain, ScrollText, Zap, Briefcase, Sparkles, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import LightCat from '../assets/light_cat.png';
 import DarkCat from '../assets/dark_cat.png';
@@ -21,7 +21,6 @@ export function About() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const [catMessage, setCatMessage] = useState<string | null>(null);
-  const [hp, setHp] = useState('100 ☕');
   const [iconHover, setIconHover] = useState<string | null>(null);
 
   const handleCatClick = () => {
@@ -48,17 +47,17 @@ export function About() {
   const questIcons = [
     { 
       icon: Heart, 
-      message: 'Passion for pixel perfection!',
+      message: 'Passion for pixel-perfect design',
       color: isDark ? 'text-pink-400' : 'text-pink-600'
     },
     { 
       icon: Coffee, 
-      message: 'Fueled by magical brews!',
+      message: 'Consistent and dedicated work ethic',
       color: isDark ? 'text-amber-400' : 'text-orange-600'
     },
     { 
       icon: Code, 
-      message: 'Ultimate Skill: Debugging Magic!',
+      message: 'Strong problem-solving skills',
       color: isDark ? 'text-violet-400' : 'text-purple-600'
     }
   ];
@@ -109,6 +108,7 @@ export function About() {
         ))}
       </div>
 
+      {/* ✅ Changed from max-w-7xl to max-w-6xl for width reduction */}
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Title */}
         <motion.div
@@ -134,22 +134,23 @@ export function About() {
               ? '3px 3px 0px rgba(255, 255, 255, 0.8)' 
               : '3px 3px 0px #FF9800',
           }}
-          // Remove shadow on mobile
           suppressHydrationWarning
         >
           PROFILE OVERVIEW
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start max-w-5xl mx-auto">
-          {/* LEFT SIDE - Character & Personality Traits */}
+        {/* 3-Column Bento Layout */}
+        {/* ✅ Changed from max-w-7xl to max-w-6xl for width reduction */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 max-w-6xl mx-auto">
+          
+          {/* ========== COLUMN 1: Avatar ========== */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="md:col-span-4 md:row-span-2"
           >
-            {/* Character Container */}
-            <div className="relative">
+            <div className="relative h-full">
               <motion.div
                 animate={{ 
                   y: [0, -8, 0],
@@ -160,7 +161,7 @@ export function About() {
                   ]
                 }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                className={`w-full aspect-square max-w-sm mx-auto rounded-none border-4 ${
+                className={`h-full w-full rounded-none border-4 ${
                   'bg-white border-fuchsia-500'
                 } flex items-center justify-center relative overflow-hidden backdrop-blur-sm`}
                 style={{
@@ -183,168 +184,103 @@ export function About() {
                     opacity: [0.5, 1, 0.5],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute top-4 right-6"
+                  className="absolute top-4 right-4"
                 >
-                  <Sparkles className={`w-8 h-8 ${isDark ? 'text-yellow-400' : 'text-yellow-500'}`} />
+                  <Sparkles className={`w-7 h-7 ${isDark ? 'text-yellow-400' : 'text-yellow-500'}`} />
                 </motion.div>
+
+                {/* Cat button */}
+                <motion.button
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={handleCatClick}
+                  className={`absolute bottom-4 left-4 w-16 h-16 rounded-none border-3 ${
+                    isDark ? 'bg-slate-700 border-amber-400 hover:bg-slate-600' : 'bg-orange-100 border-orange-500 hover:bg-orange-200'
+                  } flex items-center justify-center cursor-pointer transition-colors z-10 overflow-hidden`}
+                  style={{
+                    boxShadow: isDark 
+                      ? '4px 4px 0px rgba(251, 191, 36, 0.5)' 
+                      : '4px 4px 0px rgba(255, 152, 0, 0.4)',
+                  }}
+                >
+                  <img 
+                    src={isDark ? DarkCat : LightCat} 
+                    alt="Coding cat companion"
+                    className="w-full h-full object-cover"
+                  />
+                </motion.button>
+
+                {/* Cat Message */}
+                {catMessage && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className={`absolute top-4 left-20 transform max-w-[200px] p-3 rounded-none border-3 ${
+                      isDark ? 'bg-slate-800 border-amber-400 text-amber-200' : 'bg-white border-orange-400 text-gray-800'
+                    } font-mono text-xs z-20`}
+                    style={{
+                      boxShadow: isDark 
+                        ? '4px 4px 0px rgba(251, 191, 36, 0.4)' 
+                        : '4px 4px 0px rgba(255, 152, 0, 0.3)',
+                    }}
+                  >
+                    <div className="flex items-start gap-2">
+                      <span className="text-lg">🐾</span>
+                      <span>{catMessage}</span>
+                    </div>
+                    {/* Speech bubble tip */}
+                    <div className={`absolute -left-2 top-4 w-3 h-3 rotate-45 ${
+                      isDark ? 'bg-slate-800 border-l-3 border-b-3 border-amber-400' : 'bg-white border-l-3 border-b-3 border-orange-400'
+                    }`} />
+                  </motion.div>
+                )}
               </motion.div>
-
-              {/* Cat image in bottom-left corner of character box */}
-              <motion.button
-                whileHover={{ scale: 1.15, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={handleCatClick}
-                className={`absolute -bottom-3 -left-3 w-20 h-20 rounded-none border-4 ${
-                  isDark ? 'bg-slate-700 border-amber-400 hover:bg-slate-600' : 'bg-orange-100 border-orange-500 hover:bg-orange-200'
-                } flex items-center justify-center cursor-pointer transition-colors z-10 overflow-hidden`}
-                style={{
-                  boxShadow: isDark 
-                    ? '4px 4px 0px rgba(251, 191, 36, 0.5)' 
-                    : '4px 4px 0px rgba(255, 152, 0, 0.4)',
-                }}
-              >
-                <img 
-                  src={isDark ? DarkCat : LightCat} 
-                  alt="Coding cat companion"
-                  className="w-full h-full object-cover"
-                />
-              </motion.button>
-
-{/* Cat Message - Positioned right above the cat */}
-{catMessage && (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8, y: 10 }}
-    animate={{ opacity: 1, scale: 1, y: 0 }}
-    exit={{ opacity: 0 }}
-    className={`absolute -top-4 left-20 transform max-w-xs p-3 rounded-none border-3 ${
-      isDark ? 'bg-slate-800 border-amber-400 text-amber-200' : 'bg-white border-orange-400 text-gray-800'
-    } font-mono text-xs z-20`}
-    style={{
-      boxShadow: isDark 
-        ? '4px 4px 0px rgba(251, 191, 36, 0.4)' 
-        : '4px 4px 0px rgba(255, 152, 0, 0.3)',
-    }}
-  >
-    <div className="flex items-start gap-2">
-      <span className="text-lg">🐾</span>
-      <span>{catMessage}</span>
-    </div>
-    {/* Speech bubble tip */}
-    <div className={`absolute -left-2 top-5 w-3 h-3 rotate-45 ${
-      isDark ? 'bg-slate-800 border-l-3 border-b-3 border-amber-400' : 'bg-white border-l-3 border-b-3 border-orange-400'
-    }`} />
-  </motion.div>
-)}
             </div>
-
-            {/* Personality Traits - Below Character */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className={`p-5 rounded-none border-4 ${
-                isDark ? 'bg-slate-800/90 border-violet-400' : 'bg-white/90 border-purple-500'
-              } backdrop-blur-sm`}
-              style={{
-                boxShadow: isDark 
-                  ? '6px 6px 0px rgba(167, 139, 250, 0.4)' 
-                  : '6px 6px 0px rgba(168, 85, 247, 0.3)',
-              }}
-            >
-              <h3 className={`font-mono text-base mb-4 font-bold flex items-center gap-2 ${
-                isDark ? 'text-violet-300' : 'text-purple-600'
-              }`}>
-                <Brain className="w-5 h-5" />
-                PERSONALITY TRAITS
-              </h3>
-              <div className="space-y-3">
-                {traits.map((trait, idx) => (
-  <div 
-  key={trait.name} 
-  className={`relative group ${trait.name === "Debug Patience" ? "cursor-pointer" : ""}`}
->
-    <div className="flex justify-between mb-1.5">
-      <span className={`font-mono text-sm font-medium ${isDark ? 'text-violet-100' : 'text-gray-800'}`}>
-        {trait.name}
-      </span>
-      <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-400' : 'text-orange-600'}`}>
-        {trait.value}%
-      </span>
-    </div>
-
-    <div className={`h-5 rounded-none border-2 ${
-      isDark ? 'bg-slate-900 border-slate-700' : 'bg-gray-200 border-gray-400'
-    } overflow-hidden`}>
-      <motion.div
-        initial={{ width: 0 }}
-        whileInView={{ width: `${trait.value}%` }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, delay: idx * 0.15 }}
-        className={`h-full bg-gradient-to-r ${trait.color}`}
-      />
-    </div>
-
-    {/* Tooltip only for debug patience */}
-    {trait.name === "Debug Patience" && (
-      <div
-        className={`
-          absolute -top-8 right-0 px-2 py-1 whitespace-nowrap font-mono text-xs rounded-none border-2
-          opacity-0 group-hover:opacity-100 transition-opacity duration-200
-          ${isDark 
-            ? "bg-slate-800 border-fuchsia-400 text-fuchsia-200" 
-            : "bg-white border-orange-500 text-orange-700"
-          }
-        `}
-      >
-        Debugging is 50% code, 50% crying in console logs 💀
-      </div>
-    )}
-  </div>
-))}
-
-              </div>
-            </motion.div>
           </motion.div>
 
-          {/* RIGHT SIDE - Quest Log, Stats & Equipment */}
+          {/* ========== COLUMN 2: About + Tech ========== */}
+          
+          {/* ✅ Changed from QUEST LOG to ABOUT ME */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="md:col-span-4"
           >
-            {/* Quest Log Description */}
-            <div className={`p-6 rounded-none border-4 ${
+            <div className={`h-full p-5 rounded-none border-4 ${
               isDark ? 'bg-slate-800/90 border-fuchsia-500' : 'bg-white/90 border-orange-500'
             } backdrop-blur-sm`}
             style={{
               boxShadow: isDark 
-                ? '8px 8px 0px rgba(232, 121, 249, 0.5)' 
-                : '8px 8px 0px rgba(255, 152, 0, 0.4)',
+                ? '6px 6px 0px rgba(232, 121, 249, 0.5)' 
+                : '6px 6px 0px rgba(255, 152, 0, 0.4)',
             }}
-          >
-              <h3 className={`font-mono text-base mb-2 font-bold flex items-center gap-2 ${
-                isDark ? 'text-violet-300' : 'text-orange-700'
-              }`}>
-                <ScrollText className="w-5 h-5" />
-                QUEST LOG:
-              </h3>
-              <p className={`font-mono text-sm ${isDark ? 'text-violet-100' : 'text-gray-700'} leading-relaxed mb-3`}>
-  Hi, I'm Komal - a web developer passionate about crafting smooth, 
-  interactive, and visually engaging web experiences. 
-  I enjoy blending design and development to create interfaces that feel intuitive and alive. 
-  Currently focusing on React, Framer Motion, and accessibility to bring creative ideas to life.
-</p>
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <ScrollText className={`w-6 h-6 ${isDark ? 'text-fuchsia-300' : 'text-orange-600'}`} />
+                <h3 className={`font-mono text-lg font-bold ${isDark ? 'text-fuchsia-200' : 'text-orange-700'}`}>
+                  ABOUT ME
+                </h3>
+              </div>
+              
+              <p className={`font-mono text-sm ${isDark ? 'text-violet-100' : 'text-gray-700'} leading-relaxed mb-4`}>
+                Hi, I'm Komal - a web developer passionate about crafting smooth, 
+                interactive, and visually engaging web experiences. 
+                I enjoy blending design and development to create interfaces that feel intuitive and alive. 
+                Currently focusing on React, Framer Motion, and accessibility to bring creative ideas to life.
+              </p>
 
-
-              {/* Interactive Quest Log Icons - Aligned to left */}
-              <div className="flex gap-4">
+              {/* Interactive Icons */}
+              <div className="flex gap-4 pt-3 border-t-2" style={{
+                borderColor: isDark ? 'rgba(232, 121, 249, 0.3)' : 'rgba(255, 152, 0, 0.3)'
+              }}>
                 {questIcons.map((item, index) => {
                   const IconComponent = item.icon;
                   return (
                     <motion.div
                       key={index}
-                      whileHover={{ scale: 1.3 }}
+                      whileHover={{ scale: 1.2, y: -2 }}
                       className="relative cursor-pointer group"
                       onMouseEnter={() => setIconHover(item.message)}
                       onMouseLeave={() => setIconHover(null)}
@@ -352,7 +288,7 @@ export function About() {
                       <IconComponent className={`w-6 h-6 ${item.color}`} />
                       {iconHover === item.message && (
                         <motion.div
-                          initial={{ opacity: 0, y: 10 }}
+                          initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           className={`absolute -top-8 left-1/2 transform -translate-x-1/2 font-mono text-xs px-2 py-1 rounded-none border-2 whitespace-nowrap ${
                             isDark ? 'bg-slate-800 border-fuchsia-400 text-fuchsia-200' : 'bg-white border-orange-500 text-orange-700'
@@ -366,113 +302,55 @@ export function About() {
                 })}
               </div>
             </div>
+          </motion.div>
 
-            {/* Character Stats */}
-            <div className={`p-6 rounded-none border-4 ${
-              isDark ? 'bg-slate-800/90 border-violet-400' : 'bg-white/90 border-purple-500'
+          {/* ✅ Changed from EQUIPMENT to TECH SETUP */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="md:col-span-4"
+          >
+            <div className={`h-full p-5 rounded-none border-4 ${
+              isDark ? 'bg-slate-800/90 border-cyan-400' : 'bg-white/90 border-cyan-500'
             } backdrop-blur-sm`}
             style={{
               boxShadow: isDark 
-                ? '6px 6px 0px rgba(167, 139, 250, 0.4)' 
-                : '6px 6px 0px rgba(168, 85, 247, 0.3)',
+                ? '6px 6px 0px rgba(34, 211, 238, 0.4)' 
+                : '6px 6px 0px rgba(6, 182, 212, 0.3)',
             }}
-          >
-              <h3 className={`font-mono text-base mb-4 font-bold flex items-center gap-2 ${
-                isDark ? 'text-violet-300' : 'text-purple-600'
-              }`}>
-                <Zap className="w-5 h-5" />
-                CHARACTER STATS
-              </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center pb-2 border-b-2 border-dashed" style={{
-                  borderColor: isDark ? '#e879f9' : '#FF9800'
-                }}>
-                  <span className={`font-mono text-base font-bold ${isDark ? 'text-fuchsia-300' : 'text-orange-600'}`}>
-                    NAME:
-                  </span>
-                  <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-100' : 'text-gray-800'}`}>
-                    Komal Kaur Dhillon
-                  </span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b-2 border-dashed" style={{
-                  borderColor: isDark ? '#e879f9' : '#FF9800'
-                }}>
-                  <span className={`font-mono text-base font-bold ${isDark ? 'text-fuchsia-300' : 'text-orange-600'}`}>
-                    CLASS:
-                  </span>
-                  <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-100' : 'text-gray-800'}`}>
-                    Web Developer <Sparkles className="inline w-4 h-4" />
-                  </span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b-2 border-dashed" style={{
-                  borderColor: isDark ? '#e879f9' : '#FF9800'
-                }}>
-                  <span className={`font-mono text-base font-bold ${isDark ? 'text-fuchsia-300' : 'text-orange-600'}`}>
-                    LEVEL:
-                  </span>
-                  <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-100' : 'text-gray-800'}`}>
-                    19 (Undergraduate, 3rd Semester)
-                  </span>
-                </div>
-                <div 
-  className="flex justify-between items-center pb-2 border-b-2 border-dashed cursor-pointer group" 
-  style={{
-    borderColor: isDark ? '#e879f9' : '#FF9800'
-  }}
->
-  <span className={`font-mono text-base font-bold ${isDark ? 'text-fuchsia-300' : 'text-orange-600'}`}>
-    Location:
-  </span>
-  <span className={`font-mono text-sm font-bold ${isDark ? 'text-fuchsia-100' : 'text-gray-800'}`}>
-    India 🇮🇳
-  </span>
-</div>
-
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <Briefcase className={`w-6 h-6 ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`} />
+                <h3 className={`font-mono text-lg font-bold ${isDark ? 'text-cyan-200' : 'text-cyan-800'}`}>
+                  TECH SETUP
+                </h3>
               </div>
-            </div>
-
-            {/* Equipment Section - Small & Compact */}
-            <div className={`p-4 rounded-none border-4 ${
-              isDark ? 'bg-slate-800/90 border-emerald-400' : 'bg-white/90 border-emerald-500'
-            } backdrop-blur-sm`}
-            style={{
-              boxShadow: isDark 
-                ? '6px 6px 0px rgba(52, 211, 153, 0.4)' 
-                : '6px 6px 0px rgba(16, 185, 129, 0.3)',
-            }}
-          >
-              <h3 className={`font-mono text-base mb-3 font-bold flex items-center gap-2 ${
-                isDark ? 'text-emerald-300' : 'text-emerald-700'
-              }`}>
-                <Briefcase className="w-5 h-5" />
-                EQUIPMENT
-              </h3>
-              <div className="grid grid-cols-2 gap-2">
+              
+              <div className="space-y-3">
                 {equipment.map((item, idx) => {
                   const IconComponent = item.icon;
                   return (
                     <motion.div
                       key={item.name}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0, x: 10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 }}
-                      className={`p-2 rounded-none border-2 text-center ${
-                        isDark ? 'bg-slate-700/50 border-emerald-500' : 'bg-emerald-50 border-emerald-400'
-                      }`}
+                      className="flex items-start gap-3 p-2 rounded-none border-2"
+                      style={{
+                        borderColor: isDark ? 'rgba(34, 211, 238, 0.3)' : 'rgba(6, 182, 212, 0.3)',
+                        backgroundColor: isDark ? 'rgba(30, 41, 59, 0.3)' : 'rgba(236, 254, 255, 0.5)'
+                      }}
                     >
-                      <IconComponent className={`w-6 h-6 mx-auto mb-1 ${
-                        isDark ? 'text-emerald-300' : 'text-emerald-600'
-                      }`} />
-                      <div className={`font-mono text-xs font-bold ${
-                        isDark ? 'text-emerald-200' : 'text-emerald-800'
-                      }`}>
-                        {item.name}
-                      </div>
-                      <div className={`font-mono text-xs ${
-                        isDark ? 'text-emerald-300' : 'text-emerald-600'
-                      }`}>
-                        {item.description}
+                      <IconComponent className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`} />
+                      <div>
+                        <div className={`font-mono text-sm font-bold ${isDark ? 'text-cyan-200' : 'text-cyan-800'}`}>
+                          {item.name}
+                        </div>
+                        <div className={`font-mono text-xs ${isDark ? 'text-cyan-300/80' : 'text-cyan-600/80'}`}>
+                          {item.description}
+                        </div>
                       </div>
                     </motion.div>
                   );
@@ -480,6 +358,149 @@ export function About() {
               </div>
             </div>
           </motion.div>
+
+          {/* ========== COLUMN 3: Details + Traits ========== */}
+          
+          {/* ✅ Changed from STATS to PROFILE DETAILS */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="md:col-span-4"
+          >
+            <div className={`h-full p-5 rounded-none border-4 ${
+              isDark ? 'bg-slate-800/90 border-violet-400' : 'bg-white/90 border-purple-500'
+            } backdrop-blur-sm`}
+            style={{
+              boxShadow: isDark 
+                ? '6px 6px 0px rgba(167, 139, 250, 0.4)' 
+                : '6px 6px 0px rgba(168, 85, 247, 0.3)',
+            }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Zap className={`w-6 h-6 ${isDark ? 'text-violet-300' : 'text-purple-600'}`} />
+                <h3 className={`font-mono text-lg font-bold ${isDark ? 'text-violet-200' : 'text-purple-700'}`}>
+                  PROFILE DETAILS
+                </h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div>
+                  <div className={`font-mono text-xs ${isDark ? 'text-violet-300' : 'text-purple-600'} mb-1`}>
+                    NAME
+                  </div>
+                  <div className={`font-mono font-bold ${isDark ? 'text-violet-100' : 'text-gray-800'}`}>
+                    Komal Kaur Dhillon
+                  </div>
+                </div>
+                
+                {/* ✅ Changed from CLASS to ROLE */}
+                <div>
+                  <div className={`font-mono text-xs ${isDark ? 'text-violet-300' : 'text-purple-600'} mb-1`}>
+                    ROLE
+                  </div>
+                  <div className={`font-mono font-bold ${isDark ? 'text-violet-100' : 'text-gray-800'}`}>
+                    Web Developer <Sparkles className="inline w-4 h-4 ml-1" />
+                  </div>
+                </div>
+                
+                {/* ✅ Changed from LEVEL to EDUCATION */}
+                <div>
+                  <div className={`font-mono text-xs ${isDark ? 'text-violet-300' : 'text-purple-600'} mb-1`}>
+                    EDUCATION
+                  </div>
+                  <div className={`font-mono font-bold ${isDark ? 'text-violet-100' : 'text-gray-800'}`}>
+                    Undergraduate, 4th Semester
+                  </div>
+                </div>
+
+                {/* Location Section */}
+                <div className="pt-3 border-t-2" style={{
+                  borderColor: isDark ? 'rgba(167, 139, 250, 0.3)' : 'rgba(168, 85, 247, 0.3)'
+                }}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin className={`w-5 h-5 ${isDark ? 'text-emerald-300' : 'text-emerald-600'}`} />
+                    <div className={`font-mono text-xs ${isDark ? 'text-violet-300' : 'text-purple-600'}`}>
+                      LOCATION
+                    </div>
+                  </div>
+                  <div className={`font-mono font-bold ${isDark ? 'text-violet-100' : 'text-gray-800'}`}>
+                    India 🇮🇳
+                  </div>
+                  <div className={`font-mono text-xs mt-1 ${isDark ? 'text-violet-300/80' : 'text-purple-600/80'}`}>
+                    Web Developer based in India
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ✅ Changed from TRAITS to STRENGTHS */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="md:col-span-4"
+          >
+            <div className={`h-full p-5 rounded-none border-4 ${
+              isDark ? 'bg-slate-800/90 border-pink-400' : 'bg-white/90 border-pink-500'
+            } backdrop-blur-sm`}
+            style={{
+              boxShadow: isDark 
+                ? '6px 6px 0px rgba(244, 114, 182, 0.4)' 
+                : '6px 6px 0px rgba(236, 72, 153, 0.3)',
+            }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Brain className={`w-6 h-6 ${isDark ? 'text-pink-300' : 'text-pink-600'}`} />
+                <h3 className={`font-mono text-lg font-bold ${isDark ? 'text-pink-200' : 'text-pink-700'}`}>
+                  STRENGTHS
+                </h3>
+              </div>
+              
+              <div className="space-y-3">
+                {traits.map((trait, idx) => (
+                  <div key={trait.name} className="group relative">
+                    <div className="flex justify-between items-center mb-1.5">
+                      <span className={`font-mono text-sm font-medium ${isDark ? 'text-pink-100' : 'text-gray-800'}`}>
+                        {trait.name}
+                      </span>
+                      <span className={`font-mono text-sm font-bold ${isDark ? 'text-pink-300' : 'text-pink-600'}`}>
+                        {trait.value}%
+                      </span>
+                    </div>
+                    
+                    <div className={`h-2.5 rounded-none border ${
+                      isDark ? 'bg-slate-900 border-slate-700' : 'bg-gray-200 border-gray-400'
+                    } overflow-hidden`}>
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${trait.value}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: idx * 0.1 }}
+                        className={`h-full bg-gradient-to-r ${trait.color}`}
+                      />
+                    </div>
+                    
+                    {/* Debug Patience Tooltip - Updated wording */}
+                    {trait.name === "Debug Patience" && (
+                      <div className={`
+                        absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 font-mono text-xs rounded-none border-2
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap
+                        ${isDark 
+                          ? "bg-slate-800 border-pink-400 text-pink-200" 
+                          : "bg-white border-pink-500 text-pink-700"
+                        }
+                      `}>
+                        Debugging requires patience and systematic problem-solving
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

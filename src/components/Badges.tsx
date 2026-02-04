@@ -8,8 +8,6 @@ import {
   Sparkles,
   Trophy,
   Star,
-  //Shield, // Kept this import just in case, though ShieldCheck is used below
-  //Zap,
   X,
   Code2,
   Award,
@@ -20,6 +18,7 @@ import {
   ShieldCheck,
   GitBranch,
   Lightbulb,
+  Database,
   Cat,
   Rocket,
 } from 'lucide-react';
@@ -40,8 +39,10 @@ import VaultHeist from '../assets/vaultheist.png';
 import TataCrucible from '../assets/tatacrucible.png';
 import PromptLab from '../assets/promptlab.png';
 import Vibeathon from '../assets/vibeathon.png';
+import CredsVideo from '../assets/creds-responsive.mp4';
 
-type BadgeCategory = 'all' | 'courses' | 'hackathons' | 'events' | 'fun';
+// ✅ Updated type
+type BadgeCategory = 'featured' | 'courses' | 'hackathons' | 'events' | 'fun';
 
 interface Badge {
   id: string;
@@ -53,14 +54,17 @@ interface Badge {
   date: string;
   skills: string[];
   certImage?: string;
+  credsVideo?: string;
 }
 
 export function Badges() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-  const [filter, setFilter] = useState<BadgeCategory>('all');
+  
+  const [filter, setFilter] = useState<BadgeCategory>('featured');
   const [selectedBadge, setSelectedBadge] = useState<Badge | null>(null);
   const [hoveredBadge, setHoveredBadge] = useState<string | null>(null);
+  const [showVideo, setShowVideo] = useState(false);
 
   const badges: Badge[] = [
     // ⭐ COURSES
@@ -74,6 +78,7 @@ export function Badges() {
       date: 'Mar 2025',
       skills: ['HTML', 'CSS', 'Responsive Design'],
       certImage: Freecodecamp,
+      credsVideo: CredsVideo, 
     },
     {
       id: '2',
@@ -95,6 +100,17 @@ export function Badges() {
       issuer: 'HackerRank',
       date: 'Oct 2025',
       skills: ['JavaScript'],
+      certImage: JavaScript,
+    },
+    {
+      id: '14',
+      name: 'SQL (Basic)',
+      icon: <Database className="w-8 h-8" />,
+      description: 'Completed foundational SQL certification including database fundamentals.',
+      category: 'courses',
+      issuer: 'HackerRank',
+      date: 'Oct 2025',
+      skills: ['SQL'],
       certImage: JavaScript,
     },
 
@@ -134,17 +150,16 @@ export function Badges() {
     },
 
     {
-  id: '7',
-  name: 'Vibeathon',
-  icon: <Rocket className="w-8 h-8" />,
-  description: 'Designed and pitched a creative project in a fast-paced, innovation-focused hackathon.',
-  category: 'hackathons',
-  issuer: 'Nerds Room',
-  date: 'Dec 2025',
-  skills: ['Creativity', 'Ideation', 'Presentation'],
-  certImage: Vibeathon,
-},
-
+      id: '7',
+      name: 'Vibeathon',
+      icon: <Rocket className="w-8 h-8" />,
+      description: 'Designed and pitched a creative project in a fast-paced, innovation-focused hackathon.',
+      category: 'hackathons',
+      issuer: 'Nerds Room',
+      date: 'Dec 2025',
+      skills: ['Creativity', 'Ideation', 'Presentation'],
+      certImage: Vibeathon,
+    },
 
     // 🔵 EVENTS
     {
@@ -217,9 +232,14 @@ export function Badges() {
     },
   ];
 
-  const filteredBadges = badges.filter(
-    (badge) => filter === 'all' || badge.category === filter
-  );
+  const featuredIds = ['1', '4', '5', '7', '8', '9'];
+
+  const filteredBadges = badges.filter((badge) => {
+    if (filter === 'featured') {
+      return featuredIds.includes(badge.id);
+    }
+    return badge.category === filter;
+  });
 
   return (
     <section
@@ -281,7 +301,7 @@ export function Badges() {
           className="flex justify-center gap-3 mb-12 flex-wrap"
         >
           {[
-            { key: 'all', label: 'All', icon: Star },
+            { key: 'featured', label: 'Featured', icon: Star },
             { key: 'courses', label: 'Courses', icon: Award },
             { key: 'hackathons', label: 'Hackathons', icon: Trophy },
             { key: 'events', label: 'Events', icon: Sparkles },
@@ -321,7 +341,6 @@ export function Badges() {
           {filteredBadges.map((badge, idx) => (
             <motion.div
               key={badge.id}
-              // SAME transition on page load + filter switch
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.25, delay: idx * 0.05, ease: 'easeOut' }}
@@ -331,7 +350,10 @@ export function Badges() {
                 boxShadow: '0px 6px 20px rgba(0,0,0,0.25)',
               }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => setSelectedBadge(badge)}
+              onClick={() => {
+                setSelectedBadge(badge);
+                setShowVideo(false);
+              }}
               className={`relative p-6 rounded-none border-4 cursor-pointer transition-all ${
                 badge.category === 'courses'
                   ? isDark
@@ -422,7 +444,10 @@ export function Badges() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            onClick={() => setSelectedBadge(null)}
+            onClick={() => {
+              setSelectedBadge(null);
+              setShowVideo(false);
+            }}
             className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4"
           >
             <motion.div
@@ -451,7 +476,10 @@ export function Badges() {
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={() => setSelectedBadge(null)}
+                onClick={() => {
+                  setSelectedBadge(null);
+                  setShowVideo(false);
+                }}
                 className={`absolute top-4 right-4 p-2 border-2 rounded-none ${
                   isDark
                     ? 'border-white text-white'
@@ -463,17 +491,65 @@ export function Badges() {
 
               {/* Modal Content */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Certificate Image */}
-                <div className="flex flex-col items-center">
-                  {selectedBadge.certImage ? (
-                    <motion.img
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      src={selectedBadge.certImage}
-                      alt={selectedBadge.name}
-                      className="w-full max-w-md rounded-none border-2"
-                    />
-                  ) : (
+                {/* Certificate/Video Section with Toggle */}
+                <div className="flex flex-col items-center gap-4 relative">
+                  {/* RIGHT ARROW TO SWITCH VIEW - Only shows if video exists */}
+                  {selectedBadge.credsVideo && (
+                    <button
+                      onClick={() => setShowVideo(!showVideo)}
+                      className={`absolute top-1/2 -right-6 -translate-y-1/2 px-2 py-1 border-2 font-mono text-xs ${
+                        isDark
+                          ? 'bg-slate-800 text-white border-yellow-400 hover:bg-yellow-600'
+                          : 'bg-white text-gray-900 border-yellow-500 hover:bg-yellow-100'
+                      } transition-colors`}
+                    >
+                      {showVideo ? "CERT →" : "VIDEO →"}
+                    </button>
+                  )}
+
+                  {/* DEFAULT VIEW = CERTIFICATE */}
+                  {!showVideo && selectedBadge.certImage && (
+                    <div className="w-full max-w-md">
+                      <motion.img
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        src={selectedBadge.certImage}
+                        alt={selectedBadge.name}
+                        className="w-full rounded-none border-2"
+                      />
+                    </div>
+                  )}
+
+                  {/* CLICK ARROW → SHOW VIDEO */}
+                  {showVideo && selectedBadge.credsVideo && (
+                    <div className="w-full max-w-md">
+                      <div className={`border-2 p-2 ${
+                        isDark ? 'border-yellow-400' : 'border-yellow-500'
+                      }`}>
+                        <h4 className="font-mono text-sm font-bold text-gray-300 tracking-wide text-center mb-2">
+                          ✦ CREDs MODEL PREVIEW ✦
+                        </h4>
+                        <video
+                          controls
+                          autoPlay
+                          loop
+                          muted
+                          className="w-full"
+                        >
+                          <source src={selectedBadge.credsVideo} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                        <p className={`text-center font-mono text-xs mt-2 ${
+                          isDark ? 'text-gray-300' : 'text-gray-600'
+                        }`}>
+                          3D Creds Model — Personalized Digital Credential
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Fallback if no certificate image */}
+                  {!showVideo && !selectedBadge.certImage && (
                     <div
                       className={`w-full max-w-md p-12 rounded-none border-2 text-center ${
                         isDark
@@ -496,7 +572,7 @@ export function Badges() {
                       </div>
                       <p
                         className={`font-mono text-sm ${
-                          isDark ? 'text-gray-400' : 'text-gray-600'
+                          isDark ? 'text-gray-300' : 'text-gray-600'
                         }`}
                       >
                         Certificate image unavailable
@@ -536,8 +612,8 @@ export function Badges() {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p
-                        className={`font-mono text-xs opacity-60 mb-1 ${
-                          isDark ? 'text-gray-400' : 'text-gray-600'
+                        className={`font-mono text-xs mb-1 ${
+                          isDark ? 'text-gray-300' : 'text-gray-600'
                         }`}
                       >
                         ISSUER
@@ -552,8 +628,8 @@ export function Badges() {
                     </div>
                     <div>
                       <p
-                        className={`font-mono text-xs opacity-60 mb-1 ${
-                          isDark ? 'text-gray-400' : 'text-gray-600'
+                        className={`font-mono text-xs mb-1 ${
+                          isDark ? 'text-gray-300' : 'text-gray-600'
                         }`}
                       >
                         DATE
@@ -571,8 +647,8 @@ export function Badges() {
                   {/* Description */}
                   <div>
                     <p
-                      className={`font-mono text-xs opacity-60 mb-2 ${
-                        isDark ? 'text-gray-400' : 'text-gray-600'
+                      className={`font-mono text-xs mb-2 ${
+                        isDark ? 'text-gray-300' : 'text-gray-600'
                       }`}
                     >
                       DESCRIPTION
@@ -589,8 +665,8 @@ export function Badges() {
                   {/* Skills */}
                   <div>
                     <p
-                      className={`font-mono text-xs opacity-60 mb-2 ${
-                        isDark ? 'text-gray-400' : 'text-gray-600'
+                      className={`font-mono text-xs mb-2 ${
+                        isDark ? 'text-gray-300' : 'text-gray-600'
                       }`}
                     >
                       SKILLS
@@ -628,7 +704,7 @@ export function Badges() {
             </motion.div>
           </motion.div>
         )}
-      </div> {/* <--- THIS CLOSING DIV WAS MISSING */}
+      </div>
     </section>
   );
 }
