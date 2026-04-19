@@ -21,6 +21,9 @@ import {
   Database,
   Cat,
   Rocket,
+  Presentation,
+  Brain,
+  ClipboardList
 } from 'lucide-react';
 
 import { useState } from 'react';
@@ -40,6 +43,10 @@ import TataCrucible from '../assets/tatacrucible.png';
 import PromptLab from '../assets/promptlab.png';
 import Vibeathon from '../assets/vibeathon.png';
 import CredsVideo from '../assets/creds-responsive.mp4';
+import ClaudeCode from '../assets/Claude_Code.jpg';
+import EliteHack from '../assets/Elite_hack.jpg';
+import EY1 from '../assets/EY1.jpg';
+import EY2 from '../assets/EY2.jpg';
 
 // ✅ Updated type
 type BadgeCategory = 'featured' | 'courses' | 'hackathons' | 'events' | 'fun';
@@ -161,6 +168,30 @@ export function Badges() {
       certImage: Vibeathon,
     },
 
+    // 🆕 NEW HACKATHON ENTRIES
+    {
+  id: '15',
+  name: 'The Claude Challenge',
+  icon: <Brain className="w-8 h-8" />,
+  description: 'Participated in The Claude Challenge organized by GGSIPU, solving real-world problems using Claude AI.',
+  category: 'hackathons',
+  issuer: 'GGSIPU',
+  date: '2025',
+  skills: ['AI', 'Problem Solving', 'Innovation'],
+  certImage: ClaudeCode,
+},
+    {
+      id: '16',
+      name: 'Elite Hacks 1.0',
+      icon: <Trophy className="w-8 h-8" />,
+      description: 'Competed in Elite Hacks 1.0, building innovative solutions under time constraints.',
+      category: 'hackathons',
+      issuer: 'Elite Hacks',
+      date: '2025',
+      skills: ['Hackathon', 'Teamwork', 'Rapid Prototyping'],
+      certImage: EliteHack, // Make sure to import this image
+    },
+
     // 🔵 EVENTS
     {
       id: '8',
@@ -194,6 +225,30 @@ export function Badges() {
       date: 'Nov 2025',
       skills: ['AI Innovation', 'Prompt Design'],
       certImage: PromptLab,
+    },
+
+    // 🆕 NEW EY TECHATHON ENTRIES
+    {
+      id: '17',
+      name: 'EY Techathon 6.0 - Round 1: Executive Summary Submission',
+      icon: <ClipboardList className="w-8 h-8" />,
+      description: 'Successfully submitted executive summary for EY Techathon 6.0, showcasing strategic problem-solving approach.',
+      category: 'events',
+      issuer: 'EY',
+      date: '2025',
+      skills: ['Strategic Thinking', 'Executive Summary', 'Business Acumen'],
+      certImage: EY1, // Make sure to import this image
+    },
+    {
+      id: '18',
+      name: 'EY Techathon 6.0 - Round 2: Detailed Presentation Submission',
+      icon: <Presentation className="w-8 h-8" />,
+      description: 'Advanced to Round 2 of EY Techathon 6.0 with detailed presentation submission and solution blueprint.',
+      category: 'events',
+      issuer: 'EY',
+      date: '2025',
+      skills: ['Presentation', 'Solution Architecture', 'Technical Documentation'],
+      certImage: EY2, // Make sure to import this image
     },
 
     // 💜 FUN
@@ -231,7 +286,6 @@ export function Badges() {
       certImage: CatImage,
     },
   ];
-
   const featuredIds = ['1', '4', '5', '7', '8', '9'];
 
   const filteredBadges = badges.filter((badge) => {
