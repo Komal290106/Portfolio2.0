@@ -2,7 +2,7 @@
 
 <!-- <img src="https://github.com/user-attachments/assets/bc3a5221-41a0-42ff-ae55-a8e7fe90dcec" alt="Komal 2.0 Banner" width="100%"/> -->
 
-# 🎮 Komal 2.0 — Gamified Developer Portfolio
+#  Komal 2.0 - Gamified Developer Portfolio
 
 ### *Not just a portfolio. An experience.*
 
