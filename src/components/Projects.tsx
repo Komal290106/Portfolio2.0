@@ -1,12 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
-import { ExternalLink, Github, X, Star, Sparkles } from 'lucide-react';
-import { useState } from 'react';
+import { ExternalLink, Github, X, Star, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import nimbusImage from '../assets/nimbus.png';
 import ghibliImage from '../assets/ghibli.png';
 import masalaTalesImage from '../assets/masala_tales.png';
 import uamoreImage from '../assets/uamore.png';
-import videoSrc from '../assets/video.mp4';
+import hormonaVideo from '../assets/hormona.mp4';
 
 interface Project {
   id: number;
@@ -14,70 +14,103 @@ interface Project {
   description: string;
   category: string;
   tags: string[];
-  image: string;
+  image?: string;
   liveUrl: string;
   githubUrl: string;
-  isFeatured?: boolean;
   difficulty?: number;
   hasVideo?: boolean;
 }
+
+const hormona: Project = {
+  id: 1,
+  title: 'Hormona',
+  description: 'A hormonal health intelligence platform that connects daily lifestyle habits to cycle health and PCOD risk, giving women the tools to understand, prevent, and act — before symptoms become diagnoses.',
+  category: 'fullstack',
+  tags: ['React', 'Vite', 'TailwindCSS', 'Express', 'MongoDB', 'Groq API'],
+  liveUrl: 'https://www.hormonahealth.xyz/',
+  githubUrl: 'https://github.com/Komal290106/Hormona',
+  difficulty: 5,
+  hasVideo: true,
+};
+
+const uamore: Project = {
+  id: 2,
+  title: 'Uamore Perfume Store',
+  description: 'Minimalist e-commerce site showcasing luxury perfumes with soft pastels and smooth animations. A beautifully crafted shopping experience for premium fragrances.',
+  category: 'frontend',
+  tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
+  image: uamoreImage,
+  liveUrl: 'https://uamore-phi.vercel.app/',
+  githubUrl: 'https://github.com/Komal290106/Uamore',
+  difficulty: 4,
+};
+
+const nimbus: Project = {
+  id: 3,
+  title: 'Nimbus Keyboards',
+  description: 'Premium landing page for mechanical keyboards with cutting-edge 3D interactions and smooth animations.',
+  category: 'experiments',
+  tags: ['Next.js', 'TypeScript', 'Tailwind', 'GSAP', 'Three.js'],
+  image: nimbusImage,
+  liveUrl: 'https://nimbus-keyboard.vercel.app/',
+  githubUrl: 'https://github.com/Komal290106/nimbus-keyboard',
+  difficulty: 5,
+};
+
+const masalaTales: Project = {
+  id: 4,
+  title: 'Masala Tales',
+  description: 'Frontend website for a restaurant with interactive menu and booking features. A delightful culinary experience online.',
+  category: 'frontend',
+  tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
+  image: masalaTalesImage,
+  liveUrl: 'https://masala-tales.vercel.app/',
+  githubUrl: 'https://github.com/Komal290106/masala_tales',
+  difficulty: 4,
+};
+
+const ghibli: Project = {
+  id: 5,
+  title: 'Ghibli Fanpage',
+  description: 'A fan-made website celebrating Studio Ghibli movies, timelines, and the magic behind Miyazaki\'s creations.',
+  category: 'frontend',
+  tags: ['HTML', 'CSS'],
+  image: ghibliImage,
+  liveUrl: 'https://ghibli-jet.vercel.app/',
+  githubUrl: 'https://github.com/Komal290106/Ghibli',
+  difficulty: 3,
+};
+
+const featuredProject = hormona;
+const otherProjects: Project[] = [uamore, nimbus, masalaTales, ghibli];
 
 export function Projects() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: 'Uamore Perfume Store',
-      description: 'Minimalist e-commerce site showcasing luxury perfumes with soft pastels and smooth animations. A beautifully crafted shopping experience for premium fragrances.',
-      category: 'frontend',
-      tags: ['React', 'TypeScript', 'Tailwind','Framer Motion'],
-      image: uamoreImage,
-      liveUrl: 'https://uamore-phi.vercel.app/',
-      githubUrl: 'https://github.com/Komal290106/Uamore',
-      isFeatured: true,
-      difficulty: 4,
-      hasVideo: true
-    },
-    {
-      id: 2,
-      title: 'Nimbus Keyboards',
-      description: 'Premium landing page for mechanical keyboards with cutting-edge 3D interactions and smooth animations.',
-      category: 'experiments',
-      tags: ['Next.js', 'TypeScript', 'Tailwind', 'GSAP', 'Three.js'],
-      image: nimbusImage,
-      liveUrl: 'https://nimbus-keyboard.vercel.app/',
-      githubUrl: 'https://github.com/Komal290106/nimbus-keyboard',
-      difficulty: 5
-    },
-    {
-      id: 3,
-      title: 'Ghibli Fanpage',
-      description: 'A fan-made website celebrating Studio Ghibli movies, timelines, and the magic behind Miyazaki\'s creations.',
-      category: 'frontend',
-      tags: ['HTML', 'CSS'],
-      image: ghibliImage,
-      liveUrl: 'https://ghibli-jet.vercel.app/',
-      githubUrl: 'https://github.com/Komal290106/Ghibli',
-      difficulty: 3
-    },
-    {
-      id: 4,
-      title: 'Masala Tales',
-      description: 'Frontend website for a restaurant with interactive menu and booking features. A delightful culinary experience online.',
-      category: 'frontend',
-      tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
-      image: masalaTalesImage,
-      liveUrl: 'https://masala-tales.vercel.app/',
-      githubUrl: 'https://github.com/Komal290106/masala_tales',
-      difficulty: 4
-    },
-  ];
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const mainQuest = projects.find(p => p.isFeatured) || projects[0];
-  const sideQuests = projects.filter(p => !p.isFeatured);
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      if (window.innerWidth < 768) setVisibleCount(1);
+      else if (window.innerWidth < 1024) setVisibleCount(2);
+      else setVisibleCount(3);
+    };
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+    return () => window.removeEventListener('resize', updateVisibleCount);
+  }, []);
+
+  const maxIndex = Math.max(0, otherProjects.length - visibleCount);
+
+  useEffect(() => {
+    setCurrentIndex((prev) => Math.min(prev, maxIndex));
+  }, [maxIndex]);
+
+  const goToPrev = () => setCurrentIndex((prev) => Math.max(0, prev - 1));
+  const goToNext = () => setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
 
   return (
     <section
@@ -173,7 +206,7 @@ export function Projects() {
           </motion.p>
         </motion.div>
 
-        {/* MAIN QUEST - Made more compact */}
+        {/* FEATURED PROJECT - Made more compact */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -212,16 +245,16 @@ export function Projects() {
                 className="relative overflow-hidden bg-black"
                 whileHover={{ scale: 1.02 }}
               >
-                {mainQuest.hasVideo ? (
-                  <div className="relative aspect-video w-full">
+                {featuredProject.hasVideo ? (
+                  <div className="relative w-full">
                     <video
                       autoPlay
                       muted
                       loop
                       playsInline
-                      className="w-full h-full object-cover absolute top-0 left-0"
+                      className="w-full h-auto max-h-[280px] md:max-h-[320px] object-contain block mx-auto"
                     >
-                      <source src={videoSrc} type="video/mp4" />
+                      <source src={hormonaVideo} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                     
@@ -230,8 +263,8 @@ export function Projects() {
                 ) : (
                   <div className="relative aspect-video w-full">
                     <img
-                      src={mainQuest.image}
-                      alt={mainQuest.title}
+                      src={featuredProject.image}
+                      alt={featuredProject.title}
                       className="w-full h-full object-cover absolute top-0 left-0"
                     />
                   </div>
@@ -245,7 +278,7 @@ export function Projects() {
                     <Star
                       key={i}
                       className={`w-4 h-4 ${
-                        i < (mainQuest.difficulty || 3)
+                        i < (featuredProject.difficulty || 3)
                           ? isDark ? 'text-amber-400 fill-amber-400' : 'text-orange-500 fill-orange-500'
                           : isDark ? 'text-slate-600' : 'text-gray-300'
                       }`}
@@ -255,13 +288,13 @@ export function Projects() {
               </motion.div>
 
               {/* Content - Made more compact */}
-              <div className="p-4 md:p-6 flex flex-col justify-between">
+              <div className="p-4 md:p-5 flex flex-col justify-between">
                 <div>
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="mb-3"
+                    className="mb-2"
                   >
                     <p className={`font-mono text-xs mb-1 tracking-wider ${
                       isDark ? 'text-amber-400' : 'text-orange-600'
@@ -271,24 +304,24 @@ export function Projects() {
                     <h3 className={`font-mono text-lg md:text-xl font-bold mb-1 tracking-wider ${
                       isDark ? 'text-fuchsia-400' : 'text-purple-700'
                     }`}>
-                      {mainQuest.title}
+                      {featuredProject.title}
                     </h3>
-                    <p className={`font-mono text-xs tracking-wide mb-2 ${
+                    <p className={`font-mono text-xs tracking-wide mb-1 ${
                       isDark ? 'text-violet-300' : 'text-purple-600'
                     }`}>
                       [About the Project]
                     </p>
                   </motion.div>
 
-                  <p className={`font-mono text-xs leading-relaxed mb-3 ${
+                  <p className={`font-mono text-xs leading-snug mb-2 ${
                     isDark ? 'text-violet-200' : 'text-gray-700'
                   }`}>
-                    {mainQuest.description}
+                    {featuredProject.description}
                   </p>
 
                   {/* Tags - Made more compact */}
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {mainQuest.tags.map((tag) => (
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {featuredProject.tags.map((tag) => (
                       <motion.span
                         key={tag}
                         whileHover={{ scale: 1.1 }}
@@ -307,7 +340,7 @@ export function Projects() {
                 {/* CTA Buttons - Side by side and more compact */}
                 <div className="flex flex-col sm:flex-row gap-2">
                   <motion.a
-                    href={mainQuest.liveUrl}
+                    href={featuredProject.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ 
@@ -329,7 +362,7 @@ export function Projects() {
                    View Live
                   </motion.a>
                   <motion.a
-  href={mainQuest.githubUrl}
+  href={featuredProject.githubUrl}
   target="_blank"
   rel="noopener noreferrer"
   whileHover={{ 
@@ -355,7 +388,7 @@ export function Projects() {
           </motion.div>
         </motion.div>
 
-        {/* SIDE QUESTS - Made more compact */}
+        {/* OTHER PROJECTS */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -371,109 +404,153 @@ export function Projects() {
             ★★ OTHER PROJECTS ★★
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sideQuests.map((project, idx) => (
+          <div className="flex items-center gap-2 md:gap-3">
+            <motion.button
+              type="button"
+              onClick={goToPrev}
+              disabled={currentIndex === 0}
+              aria-label="Previous projects"
+              whileHover={currentIndex === 0 ? {} : { scale: 1.1 }}
+              whileTap={currentIndex === 0 ? {} : { scale: 0.9 }}
+              className={`shrink-0 p-2 rounded-none border-3 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+                isDark
+                  ? 'bg-slate-800/90 border-purple-500 text-purple-300 hover:border-fuchsia-400 hover:text-fuchsia-400 focus-visible:ring-fuchsia-400 focus-visible:ring-offset-[#1a1330]'
+                  : 'bg-white/90 border-orange-500 text-orange-600 hover:border-orange-600 hover:text-orange-700 focus-visible:ring-orange-500 focus-visible:ring-offset-[#FFFDE7]'
+              } ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'}`}
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </motion.button>
+
+            <div className="overflow-hidden flex-1">
               <motion.div
-                key={project.id}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ 
-                  boxShadow: isDark 
-                    ? '0 0 20px rgba(232, 121, 249, 0.5)' 
-                    : '0 0 20px rgba(255, 152, 0, 0.4)'
-                }}
-                onClick={() => setSelectedProject(project)}
-                className={`group cursor-pointer rounded-none border-3 backdrop-blur-sm transition-all duration-300 ${
-                  isDark
-                    ? 'bg-slate-800/90 border-purple-500 hover:border-fuchsia-400'
-                    : 'bg-white/90 border-orange-500 hover:border-orange-600'
-                } sm:[box-shadow:4px_4px_0px_rgba(167,139,250,0.4)] ${
-                  !isDark && 'sm:[box-shadow:4px_4px_0px_rgba(255,152,0,0.3)]'
-                }`}
+                className="flex"
+                animate={{ x: `-${currentIndex * (100 / visibleCount)}%` }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               >
-                {/* Image Container - Made more compact */}
-                <div className="relative h-40 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute bottom-2 right-2 flex gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-3 h-3 ${
-                          i < (project.difficulty || 3)
-                            ? isDark ? 'text-amber-400 fill-amber-400' : 'text-orange-500 fill-orange-500'
-                            : isDark ? 'text-slate-600' : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <div className="absolute top-3 left-3">
-                    <p className={`font-mono text-xs tracking-wider ${
-                      isDark ? 'text-amber-400' : 'text-orange-600'
-                    }`}>
-                      [PROJECT ID: {String(project.id).padStart(3, '0')}]
-                    </p>
-                  </div>
-                </div>
-
-                {/* Content - Made more compact */}
-                <div className="p-4">
-                  <h3 className={`font-mono text-base font-bold mb-2 tracking-wider ${
-                    isDark ? 'text-fuchsia-400' : 'text-purple-700'
-                  }`}>
-                    {project.title}
-                  </h3>
-                  <p className={`font-mono text-xs mb-3 leading-snug ${
-                    isDark ? 'text-violet-300' : 'text-purple-600'
-                  }`}>
-                    {project.description}
-                  </p>
-
-                  {/* Tags - Made more compact */}
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {project.tags.slice(0, 2).map((tag) => (
-                      <span
-                        key={tag}
-                        className={`px-1 py-0.5 border text-xs font-mono rounded-none ${
-                          isDark
-                            ? 'bg-slate-800 border-purple-400 text-purple-300'
-                            : 'bg-orange-100 border-orange-400 text-orange-600'
-                        }`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                    {project.tags.length > 2 && (
-                      <span className={`px-1 py-0.5 text-xs font-mono ${
-                        isDark ? 'text-purple-400' : 'text-orange-600'
-                      }`}>
-                        +{project.tags.length - 2}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Quick View Button - Made more compact */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`w-full px-3 py-1.5 font-mono text-xs font-bold rounded-none border-2 uppercase tracking-wider transition-all ${
-                      isDark
-                        ? 'bg-purple-600 text-white border-purple-400 hover:bg-purple-500'
-                        : 'bg-orange-500 text-white border-orange-400 hover:bg-orange-600'
-                    } sm:[box-shadow:1px_1px_0px_rgba(167,139,250,0.3)] ${
-                      !isDark && 'sm:[box-shadow:1px_1px_0px_rgba(255,152,0,0.3)]'
-                    }`}
+                {otherProjects.map((project, idx) => (
+                  <div
+                    key={project.id}
+                    className="shrink-0 box-border px-2"
+                    style={{ width: `${100 / visibleCount}%` }}
                   >
-                    Quick View
-                  </motion.button>
-                </div>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: (idx % visibleCount) * 0.05 }}
+                      whileHover={{ 
+                        boxShadow: isDark 
+                          ? '0 0 20px rgba(232, 121, 249, 0.5)' 
+                          : '0 0 20px rgba(255, 152, 0, 0.4)'
+                      }}
+                      onClick={() => setSelectedProject(project)}
+                      className={`group cursor-pointer rounded-none border-3 backdrop-blur-sm transition-all duration-300 h-full ${
+                        isDark
+                          ? 'bg-slate-800/90 border-purple-500 hover:border-fuchsia-400'
+                          : 'bg-white/90 border-orange-500 hover:border-orange-600'
+                      } sm:[box-shadow:4px_4px_0px_rgba(167,139,250,0.4)] ${
+                        !isDark && 'sm:[box-shadow:4px_4px_0px_rgba(255,152,0,0.3)]'
+                      }`}
+                    >
+                      {/* Image Container - Made more compact */}
+                      <div className="relative h-40 overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <div className="absolute bottom-2 right-2 flex gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`w-3 h-3 ${
+                                i < (project.difficulty || 3)
+                                  ? isDark ? 'text-amber-400 fill-amber-400' : 'text-orange-500 fill-orange-500'
+                                  : isDark ? 'text-slate-600' : 'text-gray-300'
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        <div className="absolute top-3 left-3">
+                          <p className={`font-mono text-xs tracking-wider ${
+                            isDark ? 'text-amber-400' : 'text-orange-600'
+                          }`}>
+                            [PROJECT ID: {String(project.id).padStart(3, '0')}]
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Content - Made more compact */}
+                      <div className="p-4">
+                        <h3 className={`font-mono text-base font-bold mb-2 tracking-wider ${
+                          isDark ? 'text-fuchsia-400' : 'text-purple-700'
+                        }`}>
+                          {project.title}
+                        </h3>
+                        <p className={`font-mono text-xs mb-3 leading-snug ${
+                          isDark ? 'text-violet-300' : 'text-purple-600'
+                        }`}>
+                          {project.description}
+                        </p>
+
+                        {/* Tags - Made more compact */}
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {project.tags.slice(0, 2).map((tag) => (
+                            <span
+                              key={tag}
+                              className={`px-1 py-0.5 border text-xs font-mono rounded-none ${
+                                isDark
+                                  ? 'bg-slate-800 border-purple-400 text-purple-300'
+                                  : 'bg-orange-100 border-orange-400 text-orange-600'
+                              }`}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {project.tags.length > 2 && (
+                            <span className={`px-1 py-0.5 text-xs font-mono ${
+                              isDark ? 'text-purple-400' : 'text-orange-600'
+                            }`}>
+                              +{project.tags.length - 2}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Quick View Button - Made more compact */}
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`w-full px-3 py-1.5 font-mono text-xs font-bold rounded-none border-2 uppercase tracking-wider transition-all ${
+                            isDark
+                              ? 'bg-purple-600 text-white border-purple-400 hover:bg-purple-500'
+                              : 'bg-orange-500 text-white border-orange-400 hover:bg-orange-600'
+                          } sm:[box-shadow:1px_1px_0px_rgba(167,139,250,0.3)] ${
+                            !isDark && 'sm:[box-shadow:1px_1px_0px_rgba(255,152,0,0.3)]'
+                          }`}
+                        >
+                          Quick View
+                        </motion.button>
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
               </motion.div>
-            ))}
+            </div>
+
+            <motion.button
+              type="button"
+              onClick={goToNext}
+              disabled={currentIndex === maxIndex}
+              aria-label="Next projects"
+              whileHover={currentIndex === maxIndex ? {} : { scale: 1.1 }}
+              whileTap={currentIndex === maxIndex ? {} : { scale: 0.9 }}
+              className={`shrink-0 p-2 rounded-none border-3 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+                isDark
+                  ? 'bg-slate-800/90 border-purple-500 text-purple-300 hover:border-fuchsia-400 hover:text-fuchsia-400 focus-visible:ring-fuchsia-400 focus-visible:ring-offset-[#1a1330]'
+                  : 'bg-white/90 border-orange-500 text-orange-600 hover:border-orange-600 hover:text-orange-700 focus-visible:ring-orange-500 focus-visible:ring-offset-[#FFFDE7]'
+              } ${currentIndex === maxIndex ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'}`}
+            >
+              <ChevronRight className="w-5 h-5" />
+            </motion.button>
           </div>
         </motion.div>
       </div>
@@ -532,7 +609,7 @@ export function Projects() {
                   <p className={`font-mono text-xs mb-1 tracking-wider ${
                     isDark ? 'text-amber-400' : 'text-orange-600'
                   }`}>
-                    [PROJECT ID]
+                    [PROJECT ID: {String(selectedProject.id).padStart(3, '0')}]
                   </p>
                   <h2 className={`font-mono text-xl font-bold mb-3 tracking-wider ${
                     isDark ? 'text-fuchsia-400' : 'text-purple-700'
